@@ -18,7 +18,12 @@ ApplicationWindow {
     }
 
     Text {
-        text: qsTr("Hello World")
+        width: 437
+        height: 197
+        text: qsTr("Bienvenidos a mi programa")
+        font.pointSize: 28
+        anchors.verticalCenterOffset: 1
+        anchors.horizontalCenterOffset: 1
         anchors.centerIn: parent
     }
 }
