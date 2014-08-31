@@ -4,7 +4,8 @@ QT += qml quick widgets
 
 SOURCES += \
     gui.cpp \
-    main.cpp
+    main.cpp \
+    MainWindow.cpp
 
 RESOURCES +=
 
@@ -20,4 +21,8 @@ FORMS += \
     gui.ui
 
 HEADERS += \
-    gui.h
+    gui.h \
+    MainWindow.h
+
+OTHER_FILES += \
+    recursos/spaceship.png
