@@ -4,12 +4,14 @@ QT += qml quick widgets
 
 SOURCES += \
     gui.cpp \
-    main.cpp \
-    MainWindow.cpp
+    main.cpp
 
-RESOURCES +=
+RESOURCES += \
+    recursos.qrc
+
 
 CONFIG += console
+
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -21,8 +23,6 @@ FORMS += \
     gui.ui
 
 HEADERS += \
-    gui.h \
-    MainWindow.h
+    gui.h
 
-OTHER_FILES += \
-    recursos/spaceship.png
+OTHER_FILES +=

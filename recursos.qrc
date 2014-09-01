@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>recursos/bg1.png</file>
+        <file>recursos/lgoo.png</file>
+        <file>recursos/pyro.gif</file>
+        <file>recursos/bg2.png</file>
+        <file>recursos/loading.gif</file>
+    </qresource>
+</RCC>

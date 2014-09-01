@@ -6,37 +6,103 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>546</width>
-    <height>276</height>
+    <width>816</width>
+    <height>501</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Macho Invaders</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>80</y>
-      <width>75</width>
-      <height>23</height>
+      <x>0</x>
+      <y>-30</y>
+      <width>801</width>
+      <height>201</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/recursos/lgoo.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>546</width>
-     <height>21</height>
-    </rect>
-   </property>
+   <widget class="QLabel" name="labelNombre">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>150</y>
+      <width>301</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>8_bit_1_6</family>
+     </font>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; color:#ffffff;&quot;&gt;Digite su nombre:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="inputNombre">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>150</y>
+      <width>261</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>8_bit_1_6</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelComida">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>210</y>
+      <width>301</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>8_bit_1_6</family>
+     </font>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; color:#ffffff;&quot;&gt;Comida Favorita:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="inputComida">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>210</y>
+      <width>261</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>8_bit_1_6</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
