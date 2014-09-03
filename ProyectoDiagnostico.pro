@@ -4,7 +4,8 @@ QT += qml quick widgets
 
 SOURCES += \
     gui.cpp \
-    main.cpp
+    main.cpp \
+    customlabel.cpp
 
 RESOURCES += \
     recursos.qrc
@@ -23,6 +24,7 @@ FORMS += \
     gui.ui
 
 HEADERS += \
-    gui.h
+    gui.h \
+    customlabel.h
 
 OTHER_FILES +=

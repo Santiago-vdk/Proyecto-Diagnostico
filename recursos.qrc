@@ -5,5 +5,6 @@
         <file>recursos/pyro.gif</file>
         <file>recursos/bg2.png</file>
         <file>recursos/loading.gif</file>
+        <file>recursos/giphy.gif</file>
     </qresource>
 </RCC>

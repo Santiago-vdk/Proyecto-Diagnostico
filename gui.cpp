@@ -4,6 +4,7 @@
 #include <QMouseEvent>
 #include <QDebug>
 #include <QLabel>
+//#include <customlabel.cpp>
 
 
 
@@ -20,7 +21,11 @@ gui::gui(QWidget *parent) :
     this->setPalette(palette);
 
 
-    QMovie *movie = new QMovie(":/recursos/pyro.gif");
+   //ClickableLabel label = new ClickableLabel();
+
+
+
+    QMovie *movie = new QMovie(":/recursos/loading.gif");
     QLabel *processLabel = new QLabel(this);
     processLabel->setMovie(movie);
     movie->start();
@@ -29,21 +34,21 @@ gui::gui(QWidget *parent) :
 
 }
 
-myLabel::myLabel( const QString & text, QWidget * parent )
-:QLabel(parent)
-{
-    connect( this, SIGNAL( clicked() ), this, SLOT( slotClicked() ) );
-}
+//myLabel::myLabel( const QString & text, QWidget * parent )
+//:QLabel(parent)
+//{
+//    connect( this, SIGNAL( clicked() ), this, SLOT( slotClicked() ) );
+//}
 
-void myLabel::slotClicked()
-{
-    qDebug()<<"Clicked";
-}
+//void myLabel::slotClicked()
+//{
+//    qDebug()<<"Clicked";
+//}
 
-void myLabel::mousePressEvent ( QMouseEvent * event )
-{
-    emit clicked();
-}
+//void myLabel::mousePressEvent ( QMouseEvent * event )
+//{
+//    emit clicked();
+//}
 
 
 

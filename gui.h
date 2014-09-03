@@ -21,23 +21,23 @@ private:
 };
 
 
-class myLabel : public QLabel
-{
-    Q_OBJECT
-public:
-    myLabel( const QString & text, QWidget * parent = 0 );
-    ~myLabel(){}
+//class myLabel : public QLabel
+//{
+//    Q_OBJECT
+//public:
+//    myLabel( const QString & text, QWidget * parent = 0 );
+//    ~myLabel(){}
 
-signals:
-    void clicked();
+//signals:
+//    void clicked();
 
-public slots:
-    void slotClicked();
+//public slots:
+//    void slotClicked();
 
-protected:
-    void mousePressEvent ( QMouseEvent * event ) ;
+//protected:
+//    void mousePressEvent ( QMouseEvent * event ) ;
 
-};
+//};
 
 
 
