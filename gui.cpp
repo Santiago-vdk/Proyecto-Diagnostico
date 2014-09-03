@@ -14,7 +14,7 @@ gui::gui(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setFixedSize(800,600);
-    QPixmap bkgnd("C:/Users/Shagy/Desktop/Proyecto-Diagnostico/recursos/bg1.png");
+    QPixmap bkgnd(":/recursos/bg1.png");
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
     QPalette palette;
     palette.setBrush(QPalette::Background, bkgnd);
