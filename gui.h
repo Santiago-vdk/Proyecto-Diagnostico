@@ -2,6 +2,7 @@
 #define GUI_H
 #include <QMainWindow>
 #include <QLabel>
+#include <loading.h>
 
 
 namespace Ui {
@@ -14,42 +15,17 @@ class gui : public QMainWindow
 
 public:
     explicit gui(QWidget *parent = 0);
+
     ~gui();
+
+
+public slots:
+    void closeWindow();
+    void carga();
 
 private:
     Ui::gui *ui;
 };
-
-
-//class myLabel : public QLabel
-//{
-//    Q_OBJECT
-//public:
-//    myLabel( const QString & text, QWidget * parent = 0 );
-//    ~myLabel(){}
-
-//signals:
-//    void clicked();
-
-//public slots:
-//    void slotClicked();
-
-//protected:
-//    void mousePressEvent ( QMouseEvent * event ) ;
-
-//};
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

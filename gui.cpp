@@ -1,10 +1,10 @@
 #include "gui.h"
 #include "ui_gui.h"
 #include <QMovie>
-#include <QMouseEvent>
-#include <QDebug>
 #include <QLabel>
-#include <customlabel.cpp>
+#include "myLabel.h"
+#include <QDebug>
+#include <loading.h>
 
 
 
@@ -21,40 +21,32 @@ gui::gui(QWidget *parent) :
     this->setPalette(palette);
 
 
-   //ClickableLabel label = new ClickableLabel();
-
-
-
     QMovie *movie = new QMovie(":/recursos/pyro.gif");
-    QLabel *processLabel = new QLabel(this);
-    processLabel->setMovie(movie);
+    myLabel *m_label = new myLabel("Test",this);
+    m_label->setMovie(movie);
     movie->start();
-    processLabel->setGeometry(QRect(300, 250, 500, 350));
-
+    m_label->setGeometry(QRect(300, 250, 500, 350));
+    connect(m_label, SIGNAL(clicked()), SLOT(closeWindow()));
+    connect(m_label, SIGNAL(clicked()), SLOT(carga()));
 
 }
 
-//myLabel::myLabel( const QString & text, QWidget * parent )
-//:QLabel(parent)
-//{
-//    connect( this, SIGNAL( clicked() ), this, SLOT( slotClicked() ) );
-//}
 
-//void myLabel::slotClicked()
-//{
-//    qDebug()<<"Clicked";
-//}
-
-//void myLabel::mousePressEvent ( QMouseEvent * event )
-//{
-//    emit clicked();
-//}
+void gui::closeWindow()
+{
+    this->close();
+}
 
 
-
-
+void gui::carga()
+{
+    loading *cargar = new loading();
+    cargar->show();
+}
 
 gui::~gui()
 {
     delete ui;
 }
+
+

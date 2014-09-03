@@ -6,5 +6,6 @@
         <file>recursos/bg2.png</file>
         <file>recursos/loading.gif</file>
         <file>recursos/giphy.gif</file>
+        <file>recursos/bubbleRepo.png</file>
     </qresource>
 </RCC>

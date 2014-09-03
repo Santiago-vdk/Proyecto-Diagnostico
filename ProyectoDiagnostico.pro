@@ -5,7 +5,8 @@ QT += qml quick widgets
 SOURCES += \
     gui.cpp \
     main.cpp \
-    customlabel.cpp
+    myLabel.cpp \
+    loading.cpp
 
 RESOURCES += \
     recursos.qrc
@@ -21,10 +22,12 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 FORMS += \
-    gui.ui
+    gui.ui \
+    loading.ui
 
 HEADERS += \
     gui.h \
-    customlabel.h
+    myLabel.h \
+    loading.h
 
 OTHER_FILES +=
