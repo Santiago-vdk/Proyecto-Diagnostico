@@ -25,11 +25,11 @@ gui::gui(QWidget *parent) :
 
 
 
-    QMovie *movie = new QMovie(":/recursos/loading.gif");
+    QMovie *movie = new QMovie(":/recursos/pyro.gif");
     QLabel *processLabel = new QLabel(this);
     processLabel->setMovie(movie);
     movie->start();
-    processLabel->setGeometry(QRect(300, 200, 500, 350));
+    processLabel->setGeometry(QRect(300, 250, 500, 350));
 
 
 }
