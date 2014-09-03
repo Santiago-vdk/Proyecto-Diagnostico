@@ -1,23 +1,23 @@
-#ifndef CUSTOMLABEL_H
-#define CUSTOMLABEL_H
+//#ifndef CUSTOMLABEL_H
+//#define CUSTOMLABEL_H
 
-#include <QLabel>
-#include <QMouseEvent>
-#include <QEvent>
-#include <QDebug>
+//#include <QLabel>
+//#include <QMouseEvent>
+//#include <QEvent>
+//#include <QDebug>
 
-class ClickableLabel : public QLabel
-{
+//class ClickableLabel : public QLabel
+//{
 
-Q_OBJECT
+//Q_OBJECT
 
-public:
-    explicit ClickableLabel( const QString& text ="", QWidget * parent = 0 );
-    ~ClickableLabel();
+//public:
+//    explicit ClickableLabel( const QString& text ="", QWidget * parent = 0 );
+//    ~ClickableLabel();
 
-signals:
-    void clicked();
+//signals:
+//    void clicked();
 
-protected:
-    void mousePressEvent ( QMouseEvent * event ) ;
-};
+//protected:
+//    void mousePressEvent ( QMouseEvent * event ) ;
+//};

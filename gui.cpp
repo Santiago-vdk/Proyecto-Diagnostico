@@ -4,7 +4,7 @@
 #include <QMouseEvent>
 #include <QDebug>
 #include <QLabel>
-//#include <customlabel.cpp>
+#include <customlabel.cpp>
 
 
 
