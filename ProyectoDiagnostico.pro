@@ -2,6 +2,13 @@ TEMPLATE = app
 
 QT += qml quick widgets
 
+
+
+QMAKE_LFAGS += -Wl,--repath=\\\$\$ORIGIN
+QMAKE_LFAGS += -Wl,--repath=\\\$\$ORIGIN/lib
+QMAKE_LFAGS += -Wl,--repath=\\\$\$ORIGIN/libs
+QMAKE_RPATH=
+
 SOURCES += \
     gui.cpp \
     main.cpp \
