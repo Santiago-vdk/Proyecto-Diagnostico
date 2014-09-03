@@ -34,7 +34,7 @@ gui::gui(QWidget *parent) :
     connect(m_label, SIGNAL(clicked()), SLOT(closeWindow()));
     connect(m_label, SIGNAL(clicked()), SLOT(carga()));
 
-    ui->inputNombre->setText("Prueba ");
+    //ui->inputNombre->getText
 
     //connect(m_label, SIGNAL(clicked()), SLOT(partida(user)));
 
