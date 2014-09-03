@@ -33,5 +33,4 @@ HEADERS += \
     loading.h \
     guiPartida.h
 
-OTHER_FILES += \
-    recursos/8bit16.ttf
+OTHER_FILES +=

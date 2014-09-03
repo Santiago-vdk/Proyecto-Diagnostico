@@ -1,7 +1,7 @@
 #include "myLabel.h"
 #include <QDebug>
 #include <gui.h>
-#include "MainWindow.h"
+
 
 
 

@@ -7,5 +7,6 @@
         <file>recursos/loading.gif</file>
         <file>recursos/giphy.gif</file>
         <file>recursos/bubbleRepo.png</file>
+        <file>recursos/8bit16.ttf</file>
     </qresource>
 </RCC>
