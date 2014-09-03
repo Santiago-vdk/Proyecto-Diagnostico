@@ -5,12 +5,17 @@
 #include "myLabel.h"
 #include <QDebug>
 #include <loading.h>
+#include <QTime>
+#include <string.h>
 
 
+
+QString user;
 
 gui::gui(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::gui)
+
 {
     ui->setupUi(this);
     this->setFixedSize(800,600);
@@ -29,6 +34,10 @@ gui::gui(QWidget *parent) :
     connect(m_label, SIGNAL(clicked()), SLOT(closeWindow()));
     connect(m_label, SIGNAL(clicked()), SLOT(carga()));
 
+    ui->inputNombre->setText("Prueba ");
+
+    //connect(m_label, SIGNAL(clicked()), SLOT(partida(user)));
+
 }
 
 
@@ -42,6 +51,21 @@ void gui::carga()
 {
     loading *cargar = new loading();
     cargar->show();
+
+    //Agregar ejecucion inicial
+
+    QTime dieTime= QTime::currentTime().addSecs(5);
+    while( QTime::currentTime() < dieTime ){
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+    }
+    cargar->close();
+
+}
+
+
+QString gui::partida(QString usuario){
+
+    return usuario;
 }
 
 gui::~gui()

@@ -3,10 +3,11 @@ TEMPLATE = app
 QT += qml quick widgets
 
 SOURCES += \
-    gui.cpp \
     main.cpp \
     myLabel.cpp \
-    loading.cpp
+    loading.cpp \
+    guiPartida.cpp \
+    gui.cpp
 
 RESOURCES += \
     recursos.qrc
@@ -23,11 +24,13 @@ include(deployment.pri)
 
 FORMS += \
     gui.ui \
-    loading.ui
+    loading.ui \
+    guiPartida.ui
 
 HEADERS += \
     gui.h \
     myLabel.h \
-    loading.h
+    loading.h \
+    guiPartida.h
 
 OTHER_FILES +=

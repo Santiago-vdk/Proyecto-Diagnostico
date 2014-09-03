@@ -3,6 +3,8 @@
 #include <QMainWindow>
 #include <QLabel>
 #include <loading.h>
+#include <QString>
+
 
 
 namespace Ui {
@@ -22,6 +24,7 @@ public:
 public slots:
     void closeWindow();
     void carga();
+    QString partida(QString);
 
 private:
     Ui::gui *ui;
