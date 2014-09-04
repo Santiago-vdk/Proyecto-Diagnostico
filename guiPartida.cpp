@@ -40,7 +40,6 @@ void guiPartida::moverLabel(){
 void guiPartida::crearLabel(){
     label = new QLabel();
     label->setParent(this);
-    label->setStyelSheet("image:url(:/recursos/bubbleRepo.png");
     label->move(100,200);
     label->show();
 }
