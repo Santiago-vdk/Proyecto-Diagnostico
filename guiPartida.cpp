@@ -5,22 +5,11 @@
 #include <QEventLoop>
 #include <Thread.h>
 
-
-
-
-
 guiPartida::guiPartida(QWidget *parent):QMainWindow(parent),ui(new Ui::guiPartida)
-
 {
-
     ui->setupUi(this);
     crearLabel();
     moverLabel();
-
-
-
-
-
 }
 
 void guiPartida::moverLabel(){
