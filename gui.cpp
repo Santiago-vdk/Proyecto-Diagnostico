@@ -7,6 +7,13 @@
 #include <loading.h>
 #include <QTime>
 #include <string.h>
+#include <guiPartida.h>
+#include <QFile>
+#include <QSound>
+
+
+
+
 
 
 
@@ -25,7 +32,6 @@ gui::gui(QWidget *parent) :
     palette.setBrush(QPalette::Background, bkgnd);
     this->setPalette(palette);
 
-
     QMovie *movie = new QMovie(":/recursos/pyro.gif");
     myLabel *m_label = new myLabel("Test",this);
     m_label->setMovie(movie);
@@ -33,10 +39,8 @@ gui::gui(QWidget *parent) :
     m_label->setGeometry(QRect(300, 250, 500, 350));
     connect(m_label, SIGNAL(clicked()), SLOT(closeWindow()));
     connect(m_label, SIGNAL(clicked()), SLOT(carga()));
+    connect(m_label, SIGNAL(clicked()), SLOT(partida()));
 
-    //ui->inputNombre->getText
-
-    //connect(m_label, SIGNAL(clicked()), SLOT(partida(user)));
 
 }
 
@@ -51,21 +55,27 @@ void gui::carga()
 {
     loading *cargar = new loading();
     cargar->show();
-
     //Agregar ejecucion inicial
-
-    QTime dieTime= QTime::currentTime().addSecs(5);
+    QTime dieTime= QTime::currentTime().addSecs(1);
     while( QTime::currentTime() < dieTime ){
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
     }
     cargar->close();
-
 }
 
 
-QString gui::partida(QString usuario){
+void gui::partida(){
+    guiPartida *match = new guiPartida();
+    match->show();
+    match->showFullScreen();
+    //match->setFixedSize(800,600);
 
-    return usuario;
+    QPixmap bkgnd(":/recursos/Afternoon.png");
+    bkgnd = bkgnd.scaled(match->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Background, bkgnd);
+    match->setPalette(palette);
+
 }
 
 gui::~gui()

@@ -7,7 +7,8 @@ SOURCES += \
     myLabel.cpp \
     loading.cpp \
     guiPartida.cpp \
-    gui.cpp
+    gui.cpp \
+    Thread.cpp
 
 RESOURCES += \
     recursos.qrc
@@ -27,10 +28,14 @@ FORMS += \
     loading.ui \
     guiPartida.ui
 
+
+QT += multimedia
+
 HEADERS += \
     gui.h \
     myLabel.h \
     loading.h \
-    guiPartida.h
+    guiPartida.h \
+    Thread.h
 
 OTHER_FILES +=

@@ -24,7 +24,7 @@ public:
 public slots:
     void closeWindow();
     void carga();
-    QString partida(QString);
+    void partida();
 
 private:
     Ui::gui *ui;
