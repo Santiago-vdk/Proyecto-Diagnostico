@@ -11,63 +11,63 @@ Jugador::Jugador(string nombre)
    _posX = 500;
    _posY = 0;
    _velocidad = 0;
-   _arma = 1;
+   _armas = 1;
    _invencible = false;
    _reliquias = 0;
 
 }
-Jugador::getArmas(){
+int Jugador::getArmas(){
     return _armas;
 }
-Jugador::getInvencible(){
+bool Jugador::getInvencible(){
     return _invencible;
 }
-Jugador::getNombre(){
+string Jugador::getNombre(){
     return _nombre;
 }
-Jugador::getPosX(){
+int Jugador::getPosX(){
     return _posX;
 }
-Jugador::getPosY(){
+int Jugador::getPosY(){
     return _posY;
 }
-Jugador::getPuntaje(){
+int Jugador::getPuntaje(){
     return _puntaje;
 }
-Jugador::getReliquias(){
+int Jugador::getReliquias(){
     return _reliquias;
 }
-Jugador::getVelocidad(){
+int Jugador::getVelocidad(){
     return _velocidad;
 }
-Jugador::getVidas(){
+int Jugador::getVidas(){
     return _vidas;
 }
-Jugador::setArmas(int armas){
+void Jugador::setArmas(int armas){
     _armas = armas;
 }
-Jugador::setInvencible(bool invencible){
+void Jugador::setInvencible(bool invencible){
     _invencible = invencible;
 }
-Jugador::setNombre(string nombre){
+void Jugador::setNombre(string nombre){
     _nombre = nombre;
 }
-Jugador::setPosX(int posX){
+void Jugador::setPosX(int posX){
     _posX = posX;
 }
-Jugador::setPosY(int posY){
+void Jugador::setPosY(int posY){
     _posY = posY;
 }
-Jugador::setPuntaje(int puntaje){
+void Jugador::setPuntaje(int puntaje){
     _puntaje = puntaje;
 }
-Jugador::setReliquias(int reliquias){
+void Jugador::setReliquias(int reliquias){
     _reliquias = reliquias;
 }
-Jugador::setVelocidad(int velocidad){
+void Jugador::setVelocidad(int velocidad){
     _velocidad = velocidad;
 }
-Jugador::setVidas(int vidas){
+void Jugador::setVidas(int vidas){
     _vidas = vidas;
 }
 

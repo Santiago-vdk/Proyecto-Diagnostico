@@ -1,29 +1,36 @@
 #include "Obstaculo.h"
 
-Obstaculo::getPosX(){
+Obstaculo::Obstaculo(int salud,int posX,int posY,int valor){
+    _salud = salud;
+    _posX = posX;
+    _posY = posY;
+    _valor = valor;
+}
+
+int Obstaculo::getPosX(){
     return _posX;
 
 }
-Obstaculo::getPosY(){
+int Obstaculo::getPosY(){
     return _posY;
 }
-Obstaculo::getSalud(){
+int Obstaculo::getSalud(){
     return _salud;
 }
-Obstaculo::getValor(){
+int Obstaculo::getValor(){
     return _valor;
 }
 
-Obstaculo::setPosX(int posX){
+void Obstaculo::setPosX(int posX){
     _posX=posX;
 }
-Obstaculo::setPosY(int posY){
+void Obstaculo::setPosY(int posY){
     _posY=posY;
 }
-Obstaculo::setSalud(inst salud){
+void Obstaculo::setSalud(int salud){
     _salud=salud;
 }
-Obstaculo::setValor(int valor){
+void Obstaculo::setValor(int valor){
     _valor=valor;
 }
 

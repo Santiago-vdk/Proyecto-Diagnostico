@@ -1,14 +1,14 @@
 #include "Beneficio.h"
 
-Beneficio::getPosX(){
+int Beneficio::getPosX(){
     return _posX;
 }
-Beneficio::getPosY(){
+int Beneficio::getPosY(){
     return _posY;
 }
-Beneficio::setPosX(int posX){
+void Beneficio::setPosX(int posX){
     _posX = posX;
 }
-Beneficio::setPosY(int posY){
+void Beneficio::setPosY(int posY){
     _posY = posY;
 }
