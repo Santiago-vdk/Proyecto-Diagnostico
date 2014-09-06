@@ -19,12 +19,12 @@ class guiPartida : public QMainWindow
 public:
     explicit guiPartida(QWidget *parent = 0);
     void crearLabel();
-    void moverLabel();
     ~guiPartida();
 
 private:
     Ui::guiPartida *ui;
     QLabel *label;
+
 };
 
 #endif // GUIPARTIDA_H

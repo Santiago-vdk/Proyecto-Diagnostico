@@ -12,10 +12,10 @@ public:
 
     void setMessage(const QString &message);
     void stop();
-    void run();
+
 
 protected:
-
+  void run();
 
 private:
     QString messageStr;
