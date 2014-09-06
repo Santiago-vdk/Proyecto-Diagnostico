@@ -5,10 +5,11 @@ using namespace std;
 
 class Beneficio
 {
-private:
+protected:
     int _posX, _posY;
 
 public:
+    Beneficio(int posX,int posY);
     int getPosX();
     int getPosY();
     void setPosX(int posX);

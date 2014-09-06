@@ -1,5 +1,10 @@
 #include "Beneficio.h"
 
+Beneficio::Beneficio(int posX,int posY){
+    _posX = posX;
+    _posY = posY;
+}
+
 int Beneficio::getPosX(){
     return _posX;
 }
