@@ -3,6 +3,7 @@
 #include <QLabel>
 #include <QTime>
 #include <QEventLoop>
+#include <QPixmap>
 
 
 guiPartida::guiPartida(QWidget *parent):QMainWindow(parent),ui(new Ui::guiPartida)
@@ -24,8 +25,10 @@ guiPartida::guiPartida(QWidget *parent):QMainWindow(parent),ui(new Ui::guiPartid
 }
 
 void guiPartida::crearLabel(){
-    label = new QLabel("CHINOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-    label->setParent(this);
+
+
+    label = new QLabel();
+    label->setStyleSheet("background-image: url(:/recursos/nave.png);");
     label->move(100,200);
     label->show();
 }

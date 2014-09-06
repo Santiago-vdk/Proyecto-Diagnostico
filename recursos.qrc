@@ -10,5 +10,7 @@
         <file>recursos/Afternoon.png</file>
         <file>recursos/giphy.gif</file>
         <file>recursos/test.wav</file>
+        <file>recursos/nave.png</file>
+        <file>recursos/obstaculo1.png</file>
     </qresource>
 </RCC>

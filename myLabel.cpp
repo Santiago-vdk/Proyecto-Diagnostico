@@ -18,10 +18,6 @@ void myLabel::slotClicked()
     qDebug()<<"Clicked";
 }
 
-
-
-
-
 void myLabel::mousePressEvent ( QMouseEvent * event )
 {
     emit clicked();

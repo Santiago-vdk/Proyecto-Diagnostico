@@ -6,10 +6,13 @@
 #include <QWidget>
 #include <QString>
 
+
+
 class myLabel : public QLabel
 {
     Q_OBJECT
 public:
+
     myLabel( const QString & text, QWidget * parent = 0 );
     ~myLabel(){}
 
