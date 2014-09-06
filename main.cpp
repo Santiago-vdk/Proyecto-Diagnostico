@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <gui.h>
-#include "Thread.h"
+
 
 int main(int argc, char *argv[])
 {

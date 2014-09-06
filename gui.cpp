@@ -12,11 +12,6 @@
 #include <QSound>
 
 
-
-
-
-
-
 QString user;
 
 gui::gui(QWidget *parent) :
@@ -70,11 +65,11 @@ void gui::partida(){
     match->showFullScreen();
     //match->setFixedSize(800,600);
 
-    QPixmap bkgnd(":/recursos/Afternoon.png");
-    bkgnd = bkgnd.scaled(match->size(), Qt::IgnoreAspectRatio);
-    QPalette palette;
-    palette.setBrush(QPalette::Background, bkgnd);
-    match->setPalette(palette);
+//    QPixmap bkgnd(":/recursos/Afternoon.png");
+//    bkgnd = bkgnd.scaled(match->size(), Qt::IgnoreAspectRatio);
+//    QPalette palette;
+//    palette.setBrush(QPalette::Background, bkgnd);
+//    match->setPalette(palette);
 
 }
 
