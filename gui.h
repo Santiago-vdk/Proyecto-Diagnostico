@@ -17,9 +17,7 @@ class gui : public QMainWindow
 
 public:
     explicit gui(QWidget *parent = 0);
-
     ~gui();
-
 
 public slots:
     void closeWindow();
@@ -29,6 +27,8 @@ public slots:
 private:
     Ui::gui *ui;
 };
+
+
 
 
 

@@ -4,7 +4,9 @@
 #include <QMainWindow>
 #include <QLabel>
 
-#include "Thread.h"
+#include "miThread.h"
+#include <QThread>
+
 
 namespace Ui {
 class guiPartida;
@@ -18,12 +20,15 @@ class guiPartida : public QMainWindow
 
 public:
     explicit guiPartida(QWidget *parent = 0);
-    void crearLabel();
+    void crearJugador();
+    void comenzarThread();
     ~guiPartida();
 
 private:
     Ui::guiPartida *ui;
-    QLabel *label;
+    QLabel *labelJugador;
+    QThread* Qhilo;
+    miThread* worker;
 
 };
 
