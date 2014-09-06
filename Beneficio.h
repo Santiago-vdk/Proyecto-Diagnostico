@@ -3,8 +3,15 @@
 
 class Beneficio
 {
+private:
+    int _posX, _posY;
+
 public:
-    Beneficio();
+    int getPosX();
+    int getPosY();
+    void setPosX(int posX);
+    void setPosY(int posY);
+    virtual beneficio()=0;
 };
 
 #endif // BENEFICIO_H
