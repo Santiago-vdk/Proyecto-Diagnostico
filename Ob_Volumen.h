@@ -6,6 +6,7 @@ class Ob_Volumen: public Obstaculo
 public:
     Ob_Volumen(int salud,int posX,int posY,int valor):Obstaculo(salud,posX,posY,valor){}
     virtual void mover();
+    ~Ob_Volumen();
 };
 
 #endif // OB_VOLUMEN_H

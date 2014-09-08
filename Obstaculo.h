@@ -5,6 +5,7 @@ class Obstaculo
 {
 public:
     Obstaculo(int salud,int posX,int posY,int valor);
+    virtual ~Obstaculo();
     void setSalud(int salud);
     void setPosX(int posX);
     void setPosY(int posY);

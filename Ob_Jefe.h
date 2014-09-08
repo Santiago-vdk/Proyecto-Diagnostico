@@ -7,6 +7,7 @@ class Ob_Jefe: public Obstaculo
 public:
     Ob_Jefe(int salud,int posX,int posY,int valor):Obstaculo(salud,posX,posY,valor){}
     virtual void mover();
+    ~Ob_Jefe();
 };
 
 #endif // OB_JEFE_H
