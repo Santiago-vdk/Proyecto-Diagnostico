@@ -4,3 +4,6 @@
 void Ob_Rastrero::mover(){
     qDebug()<<"mover clase Ob_Rastrero";
 }
+Ob_Rastrero::~Ob_Rastrero(){
+    qDebug()<<"mori rastrero";
+}

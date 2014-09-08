@@ -1,10 +1,14 @@
 #include "Obstaculo.h"
+#include <QDebug>
 
 Obstaculo::Obstaculo(int salud,int posX,int posY,int valor){
     _salud = salud;
     _posX = posX;
     _posY = posY;
     _valor = valor;
+}
+Obstaculo::~Obstaculo(){
+    qDebug()<<"mori obstaculo";
 }
 
 int Obstaculo::getPosX(){

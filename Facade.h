@@ -12,13 +12,22 @@ class Facade
 private:
     Jugador *_jugador;
     Obstaculo *_arrayObstaculos[100];
-    Beneficio *_arrayBeneficios[20];
+    Beneficio *_arrayBeneficios[50];
     int _cantObstaculos,_cantBeneficios,_nivel;
 
 public:
     Facade(string nombre);
+    ~Facade();
     int jugadorPosX();
     int jugadorPosY();
+    void crearObstaculo(string tipo,int posX,int posY);
+    int getCantObstaculos();
+    int getCantBeneficios();
+    int getNivel();
+    int getSaludObstaculoEnPos(int indice);
+    int getPosXObstaculoEnPos(int indice);
+    int getPosYObstaculoEnPos(int indice);
+    int getValorObstaculoEnPos(int indice);
 };
 
 #endif // FACADE_H
