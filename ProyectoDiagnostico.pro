@@ -8,7 +8,6 @@ SOURCES += \
     loading.cpp \
     guiPartida.cpp \
     gui.cpp \
-    Thread.cpp \
     Jugador.cpp \
     Beneficio.cpp \
     Obstaculo.cpp \
@@ -23,7 +22,8 @@ SOURCES += \
     Be_Invencible.cpp \
     Be_Reliquia.cpp \
     Facade.cpp \
-    miThread.cpp
+    threadObstaculos.cpp \
+    threadCrearObstaculos.cpp
 
 RESOURCES += \
     recursos.qrc
@@ -51,7 +51,6 @@ HEADERS += \
     myLabel.h \
     loading.h \
     guiPartida.h \
-    Thread.h \
     Jugador.h \
     Beneficio.h \
     Obstaculo.h \
@@ -66,6 +65,7 @@ HEADERS += \
     Be_Invecible.h \
     Be_Reliquia.h \
     Facade.h \
-    miThread.h
+    threadObstaculos.h \
+    threadCrearObstaculo.h
 
 OTHER_FILES +=
