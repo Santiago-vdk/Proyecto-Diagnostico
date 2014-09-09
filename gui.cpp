@@ -10,9 +10,9 @@
 #include <guiPartida.h>
 #include <QFile>
 #include <QSound>
+#include <string>
 
-
-QString user;
+using namespace std;
 
 gui::gui(QWidget *parent) :
     QMainWindow(parent),
@@ -48,6 +48,8 @@ void gui::closeWindow()
 
 void gui::carga()
 {
+
+    nombreUsuario = ui->inputNombre->text();
     loading *cargar = new loading();
     cargar->show();
     //Agregar ejecucion inicial
@@ -56,11 +58,12 @@ void gui::carga()
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
     }
     cargar->close();
+
 }
 
 
 void gui::partida(){
-    guiPartida *match = new guiPartida();
+    guiPartida *match = new guiPartida(this,nombreUsuario);
     match->show();
     match->showFullScreen();
 }
@@ -69,5 +72,7 @@ gui::~gui()
 {
     delete ui;
 }
+
+
 
 

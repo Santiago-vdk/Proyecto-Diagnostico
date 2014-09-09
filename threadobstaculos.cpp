@@ -1,6 +1,7 @@
 #include "threadobstaculos.h"
 #include <QDebug>
 #include "gui.h"
+#include "threadCrearObstaculo.h"
 
 
 threadObstaculos::threadObstaculos()
@@ -13,7 +14,12 @@ threadObstaculos::~threadObstaculos(){
 }
 
 void threadObstaculos::process(){
-    //correr();
+    //while (nave.getVida() > 0){
+    qDebug() << "Thread de Obstaculo creado";
+    while (true){
+
+    }
+
     emit finished();
 
 }

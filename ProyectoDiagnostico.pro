@@ -30,6 +30,8 @@ RESOURCES += \
 
 
 CONFIG += console
+CONFIG += C++11
+
 
 
 # Additional import path used to resolve QML modules in Qt Creator's code model

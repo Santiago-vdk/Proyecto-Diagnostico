@@ -24,8 +24,13 @@ public slots:
     void carga();
     void partida();
 
+private slots:
+
+
+
 private:
     Ui::gui *ui;
+    QString nombreUsuario;
 };
 
 
