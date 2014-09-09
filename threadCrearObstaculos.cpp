@@ -8,14 +8,20 @@
 #include <string>
 #include "Facade.h"
 #include <iostream>
+#include "Obstaculo.h"
+#include "guiPartida.h"
+
 
 using namespace std;
 
-threadCrearObstaculos::threadCrearObstaculos(string nombreUsuario)
+threadCrearObstaculos::threadCrearObstaculos(Facade *facade, guiPartida *partida)
 {
-// you could copy data from constructor arguments to internal variables here.
-    _nombreUsuario = nombreUsuario;
-    std::cout << _nombreUsuario << std::endl;
+    // you could copy data from constructor arguments to internal variables here.
+    _facade = facade;
+    _partida = partida;
+    _tamanioX = _partida->getTamanioVentanaX();
+    _tamanioY = _partida->getTamanioVentanaY();
+
 }
 threadCrearObstaculos::~threadCrearObstaculos(){
 
@@ -28,18 +34,21 @@ int threadCrearObstaculos::obstaculoRandom(){
 }
 
 void threadCrearObstaculos::process(){
-    Facade *facade = new Facade(_nombreUsuario);
 
-
-    i = 0;
+    int i = 1;
     int numeroObstaculo;
-    while (i <= 10){
-        numeroObstaculo = obstaculoRandom();
+    while (i <= 1){//facade->jugadorReliquias()){
+        numeroObstaculo = 0;//obstaculoRandom();
         if (numeroObstaculo == 0){
-            //facade.crearObstaculo("Dinamico", guiPartida.getTamanioVentanaX + 50, guiPartida.getTamanioY//2)
+            _facade->crearObstaculo("Dinamico", _tamanioX + 100, _tamanioY/2);
+            qDebug() << "aqui";
+            //_partida->crearObstaculoLabel();
+            connect(this, SIGNAL(crearObs()), _partida, SLOT(crearObstaculoLabel()));
+            crearObs();
         }
+        Obstaculo *temp = _facade->getObstaculoEnPos(_facade->getCantObstaculos() - 1);
         encapsulaObstaculo = new QThread;
-        obstaculo = new threadObstaculos();
+        obstaculo = new threadObstaculos(temp);
         obstaculo->moveToThread(encapsulaObstaculo);
         connect(encapsulaObstaculo, SIGNAL(started()), obstaculo, SLOT(process()));
         connect(obstaculo, SIGNAL(finished()), encapsulaObstaculo, SLOT(quit()));
@@ -47,16 +56,8 @@ void threadCrearObstaculos::process(){
         connect(encapsulaObstaculo, SIGNAL(finished()), encapsulaObstaculo, SLOT(deleteLater()));
         encapsulaObstaculo->start();
         qDebug() << "He Creado obstaculo #" << i << "Thread #" << i << "Corriendo";
+
         i ++;
     }
-    qDebug() << "Destruyendo threadCrearObstaculos";
-    //while (facade.getReliquias() =! 0)
-    //random
-    //facade.obstaculo("", rango de posicin)
-    //facade.getUltimoobstaculo
-    //Encapsulo en thread, hacer que el obstaculo sea de tipo threadObstaculo
-    //sleep(random int)
-    //qDebug("threadObstaculos Vivo");
     emit finished();
-
 }

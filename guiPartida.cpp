@@ -6,18 +6,17 @@
 #include <QPixmap>
 #include <QDebug>
 #include <QThread>
-#include <threadCrearObstaculo.h>
 #include <string>
+#include <Facade.h>
 
 using namespace std;
 
-guiPartida::guiPartida(QWidget *parent, string nombreUsuario):QMainWindow(parent)
+guiPartida::guiPartida(QWidget *parent, Facade *facade):QMainWindow(parent)
   ,ui(new Ui::guiPartida)
 {
 
+    _facade = facade;
     ui->setupUi(this);
-    _nombreUsuario = nombreUsuario;
-
     this->showFullScreen();
     QPixmap bkgnd(":/recursos/Afternoon.png");
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
@@ -26,21 +25,8 @@ guiPartida::guiPartida(QWidget *parent, string nombreUsuario):QMainWindow(parent
     this->setPalette(palette);
     setTamanioVentana(this->size().width(),this->size().height());
     crearJugador(); //Obtener parametros del facade
-    CrearObstaculos(); //Comenzar thread para obstaculos
 }
 
-void guiPartida::CrearObstaculos(){
-
-    encapsulaThreadCrearObjetos = new QThread;
-    ThreadCrearObjetos = new threadCrearObstaculos(_nombreUsuario);
-    ThreadCrearObjetos->moveToThread(encapsulaThreadCrearObjetos);
-    connect(encapsulaThreadCrearObjetos, SIGNAL(started()), ThreadCrearObjetos, SLOT(process()));
-    connect(ThreadCrearObjetos, SIGNAL(finished()), encapsulaThreadCrearObjetos, SLOT(quit()));
-    connect(ThreadCrearObjetos, SIGNAL(finished()), ThreadCrearObjetos, SLOT(deleteLater()));
-    connect(encapsulaThreadCrearObjetos, SIGNAL(finished()), encapsulaThreadCrearObjetos, SLOT(deleteLater()));
-    encapsulaThreadCrearObjetos->start();
-
-}
 
 void guiPartida::crearJugador(){
     //Pinta el label del jugador
@@ -50,6 +36,18 @@ void guiPartida::crearJugador(){
     labelJugador->move(100,200);
     labelJugador->resize(QSize(100,100));
     labelJugador->show();
+}
+
+
+
+void guiPartida::crearObstaculoLabel(){
+    //Pinta el label del jugador
+    qDebug() << "en guu";
+    labelObstaculo = new QLabel(this);
+    QPixmap *pixmap = new QPixmap(":/recursos/obstaculo1.png");
+    labelObstaculo->setPixmap(*pixmap);
+    labelObstaculo->move(300,400);
+    labelObstaculo->show();
 }
 
 void guiPartida::setTamanioVentana(int ptamanioX, int ptamanioY){

@@ -13,7 +13,7 @@ Jugador::Jugador(string nombre)
    _velocidad = 0;
    _armas = 1;
    _invencible = false;
-   _reliquias = 0;
+   _reliquias = 10;
 
 }
 int Jugador::getArmas(){

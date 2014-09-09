@@ -5,6 +5,11 @@
 #include <loading.h>
 #include <QString>
 #include <string>
+#include <QThread>
+#include <threadCrearObstaculo.h>
+#include <Facade.h>
+
+
 
 using namespace std;
 
@@ -24,6 +29,7 @@ public slots:
     void closeWindow();
     void carga();
     void partida();
+    void CrearObstaculos();
 
 private slots:
 
@@ -32,6 +38,10 @@ private slots:
 private:
     Ui::gui *ui;
     QString nombreUsuario;
+    QThread* encapsulaThreadCrearObjetos;
+    threadCrearObstaculos* ThreadCrearObjetos;
+    Facade *_facade;
+    guiPartida *match;
 };
 
 

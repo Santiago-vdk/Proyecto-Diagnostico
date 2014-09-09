@@ -2,12 +2,13 @@
 #define THREADOBSTACULOS_H
 #include <QString>
 #include <QObject>
+#include <Obstaculo.h>
 
 class threadObstaculos : public QObject {
     Q_OBJECT
 
 public:
-    threadObstaculos();
+    threadObstaculos(Obstaculo *obs);
     ~threadObstaculos();
 
 
@@ -20,6 +21,7 @@ signals:
 
 
 private:
+    Obstaculo *_obs;
 
 };
 

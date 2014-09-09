@@ -2,10 +2,10 @@
 #define GUIPARTIDA_H
 #include <QMainWindow>
 #include <QLabel>
-#include "threadCrearObstaculo.h"
 #include <QThread>
 #include <QString>
 #include <string>
+#include <Facade.h>
 
 using namespace std;
 
@@ -20,22 +20,30 @@ class guiPartida : public QMainWindow
 
 
 public:
-    explicit guiPartida(QWidget *parent = 0, string nombreUsuario = "");
+    explicit guiPartida(QWidget *parent = 0, Facade *facade = NULL);
     void crearJugador();
-    void CrearObstaculos();
+    //void CrearObstaculos();
     int getTamanioVentanaX();
     int getTamanioVentanaY();
     void setTamanioVentana(int ptamanioX, int ptamanioY);
+
     ~guiPartida();
+
+
+public slots:
+    void crearObstaculoLabel();
+
 
 private:
     Ui::guiPartida *ui;
     QLabel *labelJugador;
-    QThread* encapsulaThreadCrearObjetos;
-    threadCrearObstaculos* ThreadCrearObjetos;
+    QLabel *labelObstaculo;
+//    QThread* encapsulaThreadCrearObjetos;
+//    threadCrearObstaculos* ThreadCrearObjetos;
     int tamanioX;
     int tamanioY;
-    string _nombreUsuario;
+//    string _nombreUsuario;
+    Facade *_facade;
 
 
 };

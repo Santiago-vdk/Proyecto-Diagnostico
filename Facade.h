@@ -5,6 +5,7 @@
 #include "Beneficio.h"
 #include <string>
 
+
 using namespace std;
 
 class Facade
@@ -16,7 +17,7 @@ private:
     int _cantObstaculos,_cantBeneficios,_nivel;
 
 public:
-    Facade(string nombre);
+    Facade();
     ~Facade();
     int jugadorPosX();
     int jugadorPosY();
@@ -33,6 +34,9 @@ public:
     void crearBeneficio(string tipo, int posX, int posY);
     int getPosXBeneficioEnPos(int indice);
     int getPosYBeneficioEnPos(int indice);
+    int jugadorReliquias();
+    Obstaculo* getObstaculoEnPos(int indice);
+    void setJugadorNombre(string nombre);
 };
 
 #endif // FACADE_H

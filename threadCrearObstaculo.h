@@ -6,6 +6,8 @@
 #include "threadObstaculos.h"
 #include <QString>
 #include <string>
+#include <Facade.h>
+#include "guiPartida.h"
 
 using namespace std;
 
@@ -13,7 +15,7 @@ class threadCrearObstaculos : public QObject {
     Q_OBJECT
 
 public:
-    threadCrearObstaculos(string _nombreUsuario);
+    threadCrearObstaculos(Facade *facade, guiPartida *partida);
     ~threadCrearObstaculos();
 
 
@@ -23,6 +25,7 @@ public slots:
 
 signals:
     void finished();
+    void crearObs();
     //void error(QString err);
 
 
@@ -30,7 +33,10 @@ private:
     QThread* encapsulaObstaculo;
     threadObstaculos* obstaculo;
     int i;
-    string _nombreUsuario;
+    int _tamanioX;
+    int _tamanioY;
+    Facade *_facade;
+    guiPartida *_partida;
 
 };
 #endif // THREADCREAROBSTACULO_H

@@ -16,8 +16,8 @@
 #include "Be_Vida.h"
 using namespace std;
 
-Facade::Facade(string nombre){
-    Jugador jugador(nombre);
+Facade::Facade(){
+    Jugador jugador("");
     _jugador = &jugador;
     _nivel = 1;
     _cantObstaculos=0;
@@ -137,6 +137,23 @@ int Facade::getPosYBeneficioEnPos(int indice){
     else{
 
     }
+}
+
+int Facade::jugadorReliquias()
+{
+    return _jugador->getReliquias();
+}
+
+Obstaculo *Facade::getObstaculoEnPos(int indice)
+{
+    if (indice < _cantObstaculos){
+        return _arrayObstaculos[indice];
+    }
+}
+
+void Facade::setJugadorNombre(string nombre)
+{
+    _jugador->setNombre(nombre);
 }
 
 int Facade::getCantBeneficios(){

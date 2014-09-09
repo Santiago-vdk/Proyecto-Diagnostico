@@ -11,6 +11,8 @@
 #include <QFile>
 #include <QSound>
 #include <string>
+#include <QThread>
+#include <threadCrearObstaculo.h>
 
 using namespace std;
 
@@ -19,6 +21,7 @@ gui::gui(QWidget *parent) :
     ui(new Ui::gui)
 
 {
+    _facade = new Facade();
     ui->setupUi(this);
     this->setFixedSize(800,600);
     QPixmap bkgnd(":/recursos/bg1.png");
@@ -37,12 +40,28 @@ gui::gui(QWidget *parent) :
     connect(m_label, SIGNAL(clicked()), SLOT(partida()));
 
 
+
 }
 
 
 void gui::closeWindow()
 {
     this->close();
+}
+
+
+void gui::CrearObstaculos(){
+
+    encapsulaThreadCrearObjetos = new QThread;
+    ThreadCrearObjetos = new threadCrearObstaculos(_facade, match);
+    ThreadCrearObjetos->moveToThread(encapsulaThreadCrearObjetos);
+    connect(encapsulaThreadCrearObjetos, SIGNAL(started()), ThreadCrearObjetos, SLOT(process()));
+    connect(ThreadCrearObjetos, SIGNAL(finished()), encapsulaThreadCrearObjetos, SLOT(quit()));
+    connect(ThreadCrearObjetos, SIGNAL(finished()), ThreadCrearObjetos, SLOT(deleteLater()));
+    connect(encapsulaThreadCrearObjetos, SIGNAL(finished()), encapsulaThreadCrearObjetos, SLOT(deleteLater()));
+    encapsulaThreadCrearObjetos->start();
+    qDebug() << "thread crear corriendo";
+
 }
 
 
@@ -64,9 +83,11 @@ void gui::carga()
 
 void gui::partida(){
     string current_locale_text = qPrintable(nombreUsuario);
-    guiPartida *match = new guiPartida(this,current_locale_text);
+    _facade->setJugadorNombre(current_locale_text);
+    match = new guiPartida(this,_facade);
     match->show();
     match->showFullScreen();
+    CrearObstaculos();
 }
 
 gui::~gui()
