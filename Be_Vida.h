@@ -7,6 +7,7 @@ class Be_Vida: public Beneficio
 public:
     Be_Vida(int posX,int posY):Beneficio(posX,posY){}
     virtual string beneficio();
+    ~Be_Vida();
 };
 
 #endif // BE_VIDA_H

@@ -7,6 +7,7 @@ class Be_Invencible: public Beneficio
 public:
     Be_Invencible(int posX,int posY):Beneficio(posX,posY){}
     virtual string beneficio();
+    ~Be_Invencible();
 };
 
 #endif // BE_INVENCIBLE_H

@@ -1,8 +1,12 @@
 #include "Beneficio.h"
+#include <QDebug>
 
 Beneficio::Beneficio(int posX,int posY){
     _posX = posX;
     _posY = posY;
+}
+Beneficio::~Beneficio(){
+    qDebug()<<"mori beneficio";
 }
 
 int Beneficio::getPosX(){

@@ -10,6 +10,7 @@ protected:
 
 public:
     Beneficio(int posX,int posY);
+    virtual ~Beneficio();
     int getPosX();
     int getPosY();
     void setPosX(int posX);
