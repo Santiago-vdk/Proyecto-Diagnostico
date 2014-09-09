@@ -9,7 +9,11 @@
 #include"Ob_Teledirigido.h"
 #include"Ob_Volumen.h"
 #include <QDebug>
-
+#include "Beneficio.h"
+#include "Be_Arma.h"
+#include "Be_Invecible.h"
+#include"Be_Reliquia.h"
+#include "Be_Vida.h"
 using namespace std;
 
 Facade::Facade(string nombre){
@@ -25,8 +29,15 @@ Facade::~Facade(){
         delete _arrayObstaculos[i];
         i++;
     }
+    int w =0;
+    while(w<_cantBeneficios){
+        delete _arrayBeneficios[w];
+        w++;
+    }
     qDebug()<<"mori facade";
+
 }
+
 
 int Facade::jugadorPosX(){
     return (*_jugador).getPosX();
@@ -69,6 +80,65 @@ void Facade::crearObstaculo(string tipo, int posX,int posY){
         //entraria aqui cuando se llene el arreglo, se debe definir que procedera en este caso
     }
 }
+
+void Facade::borrarObstaculoEnPos(int indice){
+    if (indice<_cantObstaculos){
+        delete _arrayObstaculos[indice];
+        _cantObstaculos--;
+        while(indice < _cantObstaculos){
+            _arrayObstaculos[indice]=_arrayObstaculos[indice+1];
+            indice++;
+        }
+    }
+}
+
+
+void Facade::crearBeneficio(string tipo, int posX,int posY){
+    if(_cantBeneficios<100){
+        if (tipo=="Arma"){
+            _arrayBeneficios[_cantBeneficios] = new Be_Arma(posX,posY);
+            _cantBeneficios++;
+        }
+        if (tipo=="Invencible"){
+            _arrayBeneficios[_cantBeneficios] = new Be_Invencible(posX,posY);
+            _cantBeneficios++;
+        }
+        if (tipo=="Reliquia"){
+            _arrayBeneficios[_cantBeneficios] = new Be_Reliquia(posX,posY);
+            _cantBeneficios++;
+        }
+        if (tipo=="Vida"){
+            _arrayBeneficios[_cantBeneficios] = new Be_Vida(posX,posY);
+            _cantBeneficios++;
+        }
+        else{
+
+        }
+
+    }
+    else{
+
+        }
+
+}
+
+int Facade::getPosXBeneficioEnPos(int indice){
+    if (indice<_cantBeneficios){
+        return _arrayBeneficios[indice]->getPosX();
+    }
+    else{
+
+    }
+}
+int Facade::getPosYBeneficioEnPos(int indice){
+    if (indice<_cantBeneficios){
+        return _arrayBeneficios[indice]->getPosY();
+    }
+    else{
+
+    }
+}
+
 int Facade::getCantBeneficios(){
     return _cantBeneficios;
 }
