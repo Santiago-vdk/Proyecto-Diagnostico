@@ -18,7 +18,9 @@ int main(int argc, char *argv[])
     (*facade).crearObstaculo("Rastrero",5,5);
     (*facade).crearObstaculo("Volumen",10,10);
     qDebug()<<(*facade).getCantObstaculos();
-    //qDebug()<<facade.getPosXObstaculoEnPos(5);
+    (*facade).borrarObstaculoEnPos(2);
+    qDebug()<<(*facade).getCantObstaculos();
+    qDebug()<<(*facade).getPosXObstaculoEnPos(2);
     delete facade;
 
     return a.exec();

@@ -69,6 +69,17 @@ void Facade::crearObstaculo(string tipo, int posX,int posY){
         //entraria aqui cuando se llene el arreglo, se debe definir que procedera en este caso
     }
 }
+void Facade::borrarObstaculoEnPos(int indice){
+    if (indice<_cantObstaculos){
+        delete _arrayObstaculos[indice];
+        _cantObstaculos--;
+        while(indice < _cantObstaculos){
+            _arrayObstaculos[indice]=_arrayObstaculos[indice+1];
+            indice++;
+        }
+    }
+}
+
 int Facade::getCantBeneficios(){
     return _cantBeneficios;
 }
