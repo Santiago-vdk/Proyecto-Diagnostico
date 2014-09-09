@@ -1,15 +1,14 @@
-#ifndef THREAD_H
-#define THREAD_H
-
+#ifndef THREADOBSTACULOS_H
+#define THREADOBSTACULOS_H
 #include <QString>
 #include <QObject>
 
-class miThread : public QObject {
+class threadObstaculos : public QObject {
     Q_OBJECT
 
 public:
-    miThread();
-    ~miThread();
+    threadObstaculos();
+    ~threadObstaculos();
 
 
 public slots:
@@ -21,19 +20,7 @@ signals:
 
 
 private:
-    int vida;
 
 };
 
-
-
-
-
-
-
-
-
-
-
-
-#endif // THREAD_H
+#endif

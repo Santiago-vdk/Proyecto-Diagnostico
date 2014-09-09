@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QLabel>
 
-#include "miThread.h"
+#include "threadCrearObstaculo.h"
 #include <QThread>
 
 
@@ -21,14 +21,14 @@ class guiPartida : public QMainWindow
 public:
     explicit guiPartida(QWidget *parent = 0);
     void crearJugador();
-    void comenzarThread();
+    void CrearObstaculos();
     ~guiPartida();
 
 private:
     Ui::guiPartida *ui;
     QLabel *labelJugador;
     QThread* Qhilo;
-    miThread* worker;
+    threadCrearObstaculos* worker;
 
 };
 

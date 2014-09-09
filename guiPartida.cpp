@@ -7,7 +7,7 @@
 #include <QDebug>
 
 #include <QThread>
-#include <miThread.h>
+#include <threadCrearObstaculo.h>
 
 
 guiPartida::guiPartida(QWidget *parent):QMainWindow(parent),ui(new Ui::guiPartida)
@@ -19,26 +19,23 @@ guiPartida::guiPartida(QWidget *parent):QMainWindow(parent),ui(new Ui::guiPartid
     QPalette palette;
     palette.setBrush(QPalette::Background, bkgnd);
     this->setPalette(palette);
-    crearJugador();
-    comenzarThread();
+    crearJugador(); //Obtener parametros del facade
+    CrearObstaculos(); //Comenzar thread para obstaculos
+
 
 }
 
 
-void guiPartida::comenzarThread(){
+void guiPartida::CrearObstaculos(){
 
-    Qhilo = new QThread;
-    worker = new miThread();
-    worker->moveToThread(Qhilo);
-    //connect(worker, SIGNAL(error(QString)), worker, SLOT(errorString(QString)));
-    connect(Qhilo, SIGNAL(started()), worker, SLOT(process()));
-    connect(worker, SIGNAL(finished()), Qhilo, SLOT(quit()));
-    connect(worker, SIGNAL(finished()), worker, SLOT(deleteLater()));
-    connect(Qhilo, SIGNAL(finished()), Qhilo, SLOT(deleteLater()));
-    Qhilo->start();
-
-
-
+//    encapsulaThread = new QThread;
+//    worker = new threadCrearObstaculos();
+//    worker->moveToThread(Qhilo);
+//    connect(Qhilo, SIGNAL(started()), worker, SLOT(process()));
+//    connect(worker, SIGNAL(finished()), Qhilo, SLOT(quit()));
+//    connect(worker, SIGNAL(finished()), worker, SLOT(deleteLater()));
+//    connect(Qhilo, SIGNAL(finished()), Qhilo, SLOT(deleteLater()));
+//    Qhilo->start();
 
 }
 
