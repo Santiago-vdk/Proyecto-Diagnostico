@@ -7,14 +7,17 @@
 #include <QDebug>
 #include <QThread>
 #include <threadCrearObstaculo.h>
+#include <string>
 
-guiPartida::guiPartida(QWidget *parent, QString nombreUsuario):QMainWindow(parent)
+using namespace std;
+
+guiPartida::guiPartida(QWidget *parent, string nombreUsuario):QMainWindow(parent)
   ,ui(new Ui::guiPartida)
 {
 
     ui->setupUi(this);
     _nombreUsuario = nombreUsuario;
-    qDebug() << _nombreUsuario;
+
     this->showFullScreen();
     QPixmap bkgnd(":/recursos/Afternoon.png");
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
@@ -29,7 +32,7 @@ guiPartida::guiPartida(QWidget *parent, QString nombreUsuario):QMainWindow(paren
 void guiPartida::CrearObstaculos(){
 
     encapsulaThreadCrearObjetos = new QThread;
-    ThreadCrearObjetos = new threadCrearObstaculos();
+    ThreadCrearObjetos = new threadCrearObstaculos(_nombreUsuario);
     ThreadCrearObjetos->moveToThread(encapsulaThreadCrearObjetos);
     connect(encapsulaThreadCrearObjetos, SIGNAL(started()), ThreadCrearObjetos, SLOT(process()));
     connect(ThreadCrearObjetos, SIGNAL(finished()), encapsulaThreadCrearObjetos, SLOT(quit()));

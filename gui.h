@@ -4,8 +4,9 @@
 #include <QLabel>
 #include <loading.h>
 #include <QString>
+#include <string>
 
-
+using namespace std;
 
 namespace Ui {
 class gui;

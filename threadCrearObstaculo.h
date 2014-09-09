@@ -4,12 +4,16 @@
 #include <QObject>
 #include <QThread>
 #include "threadObstaculos.h"
+#include <QString>
+#include <string>
+
+using namespace std;
 
 class threadCrearObstaculos : public QObject {
     Q_OBJECT
 
 public:
-    threadCrearObstaculos();
+    threadCrearObstaculos(string _nombreUsuario);
     ~threadCrearObstaculos();
 
 
@@ -26,6 +30,7 @@ private:
     QThread* encapsulaObstaculo;
     threadObstaculos* obstaculo;
     int i;
+    string _nombreUsuario;
 
 };
 #endif // THREADCREAROBSTACULO_H

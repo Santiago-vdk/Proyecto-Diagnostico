@@ -5,13 +5,17 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
+#include <string>
 #include "Facade.h"
+#include <iostream>
 
 using namespace std;
 
-threadCrearObstaculos::threadCrearObstaculos()
+threadCrearObstaculos::threadCrearObstaculos(string nombreUsuario)
 {
 // you could copy data from constructor arguments to internal variables here.
+    _nombreUsuario = nombreUsuario;
+    std::cout << _nombreUsuario << std::endl;
 }
 threadCrearObstaculos::~threadCrearObstaculos(){
 
@@ -24,7 +28,7 @@ int threadCrearObstaculos::obstaculoRandom(){
 }
 
 void threadCrearObstaculos::process(){
-    //Facade facade = new Facade("test");
+    Facade *facade = new Facade(_nombreUsuario);
 
 
     i = 0;

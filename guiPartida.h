@@ -5,6 +5,9 @@
 #include "threadCrearObstaculo.h"
 #include <QThread>
 #include <QString>
+#include <string>
+
+using namespace std;
 
 namespace Ui {
 class guiPartida;
@@ -17,7 +20,7 @@ class guiPartida : public QMainWindow
 
 
 public:
-    explicit guiPartida(QWidget *parent = 0, QString nombreUsuario = "");
+    explicit guiPartida(QWidget *parent = 0, string nombreUsuario = "");
     void crearJugador();
     void CrearObstaculos();
     int getTamanioVentanaX();
@@ -32,7 +35,7 @@ private:
     threadCrearObstaculos* ThreadCrearObjetos;
     int tamanioX;
     int tamanioY;
-    QString _nombreUsuario;
+    string _nombreUsuario;
 
 
 };

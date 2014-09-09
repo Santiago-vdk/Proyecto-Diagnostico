@@ -29,6 +29,10 @@ public:
     int getPosXObstaculoEnPos(int indice);
     int getPosYObstaculoEnPos(int indice);
     int getValorObstaculoEnPos(int indice);
+    //Agregados por Santiago-vdk
+    void crearBeneficio(string tipo, int posX, int posY);
+    int getPosXBeneficioEnPos(int indice);
+    int getPosYBeneficioEnPos(int indice);
 };
 
 #endif // FACADE_H

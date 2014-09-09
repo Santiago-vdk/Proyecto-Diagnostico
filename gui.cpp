@@ -63,7 +63,8 @@ void gui::carga()
 
 
 void gui::partida(){
-    guiPartida *match = new guiPartida(this,nombreUsuario);
+    string current_locale_text = qPrintable(nombreUsuario);
+    guiPartida *match = new guiPartida(this,current_locale_text);
     match->show();
     match->showFullScreen();
 }
