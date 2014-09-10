@@ -2,7 +2,14 @@
 #include <QDebug>
 
 void Ob_Estatico::mover(){
-    qDebug()<<"mover clase Ob_Estatico";
+    if (_posX-10 > 0){
+
+       _posX -= 5;
+    }
+    else{
+        _salud = 0;
+    }
+
 }
 Ob_Estatico::~Ob_Estatico(){
     qDebug()<<"mori estatico";

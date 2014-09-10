@@ -23,7 +23,8 @@ SOURCES += \
     Be_Reliquia.cpp \
     Facade.cpp \
     threadObstaculos.cpp \
-    threadCrearObstaculos.cpp
+    threadCrearObstaculos.cpp \
+    threadRefrescaGui.cpp
 
 RESOURCES += \
     recursos.qrc
@@ -68,6 +69,7 @@ HEADERS += \
     Be_Reliquia.h \
     Facade.h \
     threadObstaculos.h \
-    threadCrearObstaculo.h
+    threadCrearObstaculo.h \
+    threadRefrescaGui.h
 
 OTHER_FILES +=

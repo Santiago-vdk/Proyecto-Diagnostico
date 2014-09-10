@@ -13,6 +13,7 @@
 #include <string>
 #include <QThread>
 #include <threadCrearObstaculo.h>
+#include <threadRefrescaGui.h>
 
 using namespace std;
 
@@ -49,6 +50,20 @@ void gui::closeWindow()
     this->close();
 }
 
+void gui::refrescaGUI(){
+
+    encapsulaThreadRefrescarGUI = new QThread;
+    ThreadRefrescarGUI = new threadRefrescaGui(_facade, match);
+    ThreadRefrescarGUI->moveToThread(encapsulaThreadRefrescarGUI);
+
+    connect(encapsulaThreadRefrescarGUI, SIGNAL(started()), ThreadRefrescarGUI , SLOT(process()));
+    connect(ThreadRefrescarGUI , SIGNAL(finished()), encapsulaThreadRefrescarGUI, SLOT(quit()));
+    connect(ThreadRefrescarGUI , SIGNAL(finished()), ThreadRefrescarGUI , SLOT(deleteLater()));
+    connect(encapsulaThreadRefrescarGUI, SIGNAL(finished()), encapsulaThreadRefrescarGUI, SLOT(deleteLater()));
+
+    encapsulaThreadRefrescarGUI->start();
+
+}
 
 void gui::CrearObstaculos(){
 
@@ -60,7 +75,6 @@ void gui::CrearObstaculos(){
     connect(ThreadCrearObjetos, SIGNAL(finished()), ThreadCrearObjetos, SLOT(deleteLater()));
     connect(encapsulaThreadCrearObjetos, SIGNAL(finished()), encapsulaThreadCrearObjetos, SLOT(deleteLater()));
     encapsulaThreadCrearObjetos->start();
-    qDebug() << "thread crear corriendo";
 
 }
 
@@ -86,8 +100,8 @@ void gui::partida(){
     _facade->setJugadorNombre(current_locale_text);
     match = new guiPartida(this,_facade);
     match->show();
-    match->showFullScreen();
     CrearObstaculos();
+    refrescaGUI();
 }
 
 gui::~gui()

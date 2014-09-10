@@ -23,6 +23,7 @@ public:
     int jugadorPosY();
     void crearObstaculo(string tipo,int posX,int posY);
     void borrarObstaculoEnPos(int indice);
+    int borrarObstaculoPorPuntero(Obstaculo *obstaculo);
     int getCantObstaculos();
     int getCantBeneficios();
     int getNivel();

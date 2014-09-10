@@ -92,6 +92,28 @@ void Facade::borrarObstaculoEnPos(int indice){
     }
 }
 
+int Facade::borrarObstaculoPorPuntero(Obstaculo *obstaculo)
+{
+    int i = 0;
+    int indice = -1;
+    while(i<_cantObstaculos){
+        if(_arrayObstaculos[i] == obstaculo){
+            delete _arrayObstaculos[i];
+            _cantObstaculos--;
+            indice = i;
+            while(i < _cantObstaculos){
+                _arrayObstaculos[i]=_arrayObstaculos[i+1];
+                i++;
+            }
+
+        }
+        else{
+            i++;
+        }
+    }
+    return indice;
+}
+
 
 void Facade::crearBeneficio(string tipo, int posX,int posY){
     if(_cantBeneficios<100){

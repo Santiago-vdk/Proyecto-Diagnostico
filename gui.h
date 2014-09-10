@@ -8,6 +8,7 @@
 #include <QThread>
 #include <threadCrearObstaculo.h>
 #include <Facade.h>
+#include <threadRefrescaGui.h>
 
 
 
@@ -23,6 +24,7 @@ class gui : public QMainWindow
 
 public:
     explicit gui(QWidget *parent = 0);
+    void refrescaGUI();
     ~gui();
 
 public slots:
@@ -30,6 +32,7 @@ public slots:
     void carga();
     void partida();
     void CrearObstaculos();
+
 
 private slots:
 
@@ -42,6 +45,10 @@ private:
     threadCrearObstaculos* ThreadCrearObjetos;
     Facade *_facade;
     guiPartida *match;
+
+    QThread* encapsulaThreadRefrescarGUI;
+    threadRefrescaGui* ThreadRefrescarGUI;
+
 };
 
 

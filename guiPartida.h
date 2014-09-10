@@ -7,6 +7,7 @@
 #include <string>
 #include <Facade.h>
 
+
 using namespace std;
 
 namespace Ui {
@@ -22,28 +23,31 @@ class guiPartida : public QMainWindow
 public:
     explicit guiPartida(QWidget *parent = 0, Facade *facade = NULL);
     void crearJugador();
-    //void CrearObstaculos();
+    void borrarLabelEnPos(int i);
     int getTamanioVentanaX();
     int getTamanioVentanaY();
     void setTamanioVentana(int ptamanioX, int ptamanioY);
-
+    void setLabelInfo(string pLabelNombre, int posLabelX, int posLabelY);
     ~guiPartida();
 
 
 public slots:
-    void crearObstaculoLabel();
+    void agregarArregloLabels();
+    void refrescarGUI();
 
 
 private:
     Ui::guiPartida *ui;
     QLabel *labelJugador;
     QLabel *labelObstaculo;
-//    QThread* encapsulaThreadCrearObjetos;
-//    threadCrearObstaculos* ThreadCrearObjetos;
     int tamanioX;
     int tamanioY;
-//    string _nombreUsuario;
     Facade *_facade;
+    QLabel *arregloLabels[100];
+    int contadorArregloLabels = 0;
+    string _LabelNombre;
+    int _posLabelX;
+    int _posLabelY;
 
 
 };

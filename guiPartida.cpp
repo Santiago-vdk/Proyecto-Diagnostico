@@ -8,6 +8,9 @@
 #include <QThread>
 #include <string>
 #include <Facade.h>
+#include <QApplication>
+#include <QMovie>
+#include <myLabel.h>
 
 using namespace std;
 
@@ -24,7 +27,8 @@ guiPartida::guiPartida(QWidget *parent, Facade *facade):QMainWindow(parent)
     palette.setBrush(QPalette::Background, bkgnd);
     this->setPalette(palette);
     setTamanioVentana(this->size().width(),this->size().height());
-    crearJugador(); //Obtener parametros del facade
+    crearJugador();
+
 }
 
 
@@ -38,21 +42,74 @@ void guiPartida::crearJugador(){
     labelJugador->show();
 }
 
-
-
-void guiPartida::crearObstaculoLabel(){
-    //Pinta el label del jugador
-    qDebug() << "en guu";
-    labelObstaculo = new QLabel(this);
-    QPixmap *pixmap = new QPixmap(":/recursos/obstaculo1.png");
-    labelObstaculo->setPixmap(*pixmap);
-    labelObstaculo->move(300,400);
-    labelObstaculo->show();
+void guiPartida::borrarLabelEnPos(int i){
+    if (i < contadorArregloLabels){
+        arregloLabels[i]->deleteLater();
+        contadorArregloLabels --;
+        while(i < contadorArregloLabels){
+            arregloLabels[i]=arregloLabels[i+1];
+            i++;
+        }
+    }
 }
+
+void guiPartida::refrescarGUI()
+{
+    int i = 0;
+    while (i < contadorArregloLabels){
+        arregloLabels[i]->move(_facade->getPosXObstaculoEnPos(i),_facade->getPosYObstaculoEnPos(i));
+        i ++;
+    }
+}
+
+
 
 void guiPartida::setTamanioVentana(int ptamanioX, int ptamanioY){
     tamanioX = ptamanioX;
     tamanioY = ptamanioY;
+}
+
+void guiPartida::setLabelInfo(string pLabelNombre, int posLabelX, int posLabelY)
+{
+    _LabelNombre = pLabelNombre;
+    _posLabelX = posLabelX;
+    _posLabelY = posLabelY;
+}
+
+void guiPartida::agregarArregloLabels()
+{
+    if (_LabelNombre == "Dinamico"){
+        QLabel *labelDinamico = new QLabel(this);
+        QPixmap *pixmap = new QPixmap(":/recursos/obstaculo1.png");
+        labelDinamico->setPixmap(*pixmap);
+        labelDinamico->move(_posLabelX,_posLabelY);
+        labelDinamico->resize(QSize(100,100));
+        labelDinamico->show();
+        arregloLabels[contadorArregloLabels] = labelDinamico;
+        contadorArregloLabels++;
+    }
+
+    if (_LabelNombre == "Estatico"){
+        QLabel *labelDinamico = new QLabel(this);
+        QPixmap *pixmap = new QPixmap(":/recursos/obstaculo1.png");
+        labelDinamico->setPixmap(*pixmap);
+        labelDinamico->move(_posLabelX,_posLabelY);
+        labelDinamico->resize(QSize(100,100));
+        labelDinamico->show();
+        arregloLabels[contadorArregloLabels] = labelDinamico;
+        contadorArregloLabels++;
+    }
+
+    if (_LabelNombre == "Rastrero"){
+        QLabel *labelDinamico = new QLabel(this);
+        QPixmap *pixmap = new QPixmap(":/recursos/obstaculo1.png");
+        labelDinamico->setPixmap(*pixmap);
+        labelDinamico->move(_posLabelX,_posLabelY);
+        labelDinamico->resize(QSize(100,100));
+        labelDinamico->show();
+        arregloLabels[contadorArregloLabels] = labelDinamico;
+        contadorArregloLabels++;
+    }
 }
 
 int guiPartida::getTamanioVentanaX(){

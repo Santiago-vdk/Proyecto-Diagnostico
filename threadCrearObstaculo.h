@@ -22,10 +22,12 @@ public:
 public slots:
     void process();
     int obstaculoRandom();
+    int randomPosY();
 
 signals:
     void finished();
-    void crearObs();
+    void agregarObsLabel();
+
     //void error(QString err);
 
 
