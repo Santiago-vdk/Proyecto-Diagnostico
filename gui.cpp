@@ -24,6 +24,8 @@ gui::gui(QWidget *parent) :
 {
     _facade = new Facade();
     ui->setupUi(this);
+
+
     this->setFixedSize(800,600);
     QPixmap bkgnd(":/recursos/bg1.png");
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
@@ -31,11 +33,14 @@ gui::gui(QWidget *parent) :
     palette.setBrush(QPalette::Background, bkgnd);
     this->setPalette(palette);
 
+
     QMovie *movie = new QMovie(":/recursos/pyro.gif");
     myLabel *m_label = new myLabel("Test",this);
     m_label->setMovie(movie);
     movie->start();
     m_label->setGeometry(QRect(300, 250, 500, 350));
+
+
     connect(m_label, SIGNAL(clicked()), SLOT(closeWindow()));
     connect(m_label, SIGNAL(clicked()), SLOT(carga()));
     connect(m_label, SIGNAL(clicked()), SLOT(partida()));
@@ -81,7 +86,6 @@ void gui::CrearObstaculos(){
 
 void gui::carga()
 {
-
     nombreUsuario = ui->inputNombre->text();
     loading *cargar = new loading();
     cargar->show();
@@ -98,6 +102,7 @@ void gui::carga()
 void gui::partida(){
     string current_locale_text = qPrintable(nombreUsuario);
     _facade->setJugadorNombre(current_locale_text);
+
     match = new guiPartida(this,_facade);
     match->show();
     CrearObstaculos();

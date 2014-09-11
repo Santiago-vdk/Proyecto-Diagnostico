@@ -6,12 +6,10 @@ using namespace std;
 
 class Jugador
 {
-private:
-    int _puntaje,_vidas,_posX,_posY,_velocidad,_armas,_reliquias;
-    string _nombre;
-    bool _invencible;
+
 public:
     Jugador(string nombre);
+    ~Jugador();
     void setPuntaje(int puntaje);
     void setVidas(int vidas);
     void setPosX(int posX);
@@ -31,6 +29,20 @@ public:
     int getReliquias();
     string getNombre();
     bool getInvencible();
+
+
+private:
+    //int _puntaje,_vidas,_posX,_posY,_velocidad,_armas,_reliquias;
+    int _puntaje;
+    int _vidas;
+    int _posX = 0;
+    int _posY = 0;
+    int _velocidad;
+    int  _armas;
+    int _reliquias;
+
+    string _nombre;
+    bool _invencible;
 
 
 };

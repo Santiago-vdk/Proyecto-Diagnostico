@@ -1,6 +1,5 @@
 #ifndef OB_JEFE_H
 #define OB_JEFE_H
-
 #include <Obstaculo.h>
 class Ob_Jefe: public Obstaculo
 {

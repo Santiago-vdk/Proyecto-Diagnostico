@@ -29,7 +29,7 @@ threadCrearObstaculos::~threadCrearObstaculos(){
 
 int threadCrearObstaculos::obstaculoRandom(){
     std::srand(time (NULL));
-    int v1 = std::rand() % 2;
+    int v1 = std::rand() % 6;
     return v1;
 }
 
@@ -46,32 +46,54 @@ int threadCrearObstaculos::randomPosY(){
 void threadCrearObstaculos::process(){
 
     int i = 1;
+    int j=0;
     int numeroObstaculo;
     connect(this, SIGNAL(agregarObsLabel()), _partida, SLOT(agregarArregloLabels()));
     while (i <= _facade->jugadorReliquias()){
 
         numeroObstaculo = obstaculoRandom();
+
         if (numeroObstaculo == 0){
-            int x = _tamanioX + 100;
+            int x = _tamanioX + 50;
             int y = randomPosY();
             _facade->crearObstaculo("Dinamico", x, y);
             _partida->setLabelInfo("Dinamico", x, y);
             agregarObsLabel();
 
-
         }
         if (numeroObstaculo == 1){
-            int x = _tamanioX + 100;
+            int x = _tamanioX + 50;
             int y = randomPosY();
             _facade->crearObstaculo("Estatico", x, y);
             _partida->setLabelInfo("Estatico", x, y);
             agregarObsLabel();
         }
-        if (numeroObstaculo == 1){
-            int x = _tamanioX + 100;
+        if (numeroObstaculo == 2){
+            int x = _tamanioX + 50;
+            //int y = randomPosY();
+            _facade->crearObstaculo("Rastrero", x,_tamanioY-100);
+            _partida->setLabelInfo("Rastrero", x,_tamanioY-100);
+            agregarObsLabel();
+        }
+        if (numeroObstaculo == 3){
+            int x = _tamanioX + 50;
             int y = randomPosY();
-            _facade->crearObstaculo("Rastrero", x, y);
-            _partida->setLabelInfo("Rastrero", x, y);
+            _facade->crearObstaculo("Teledirigido", x, y);
+            _partida->setLabelInfo("Teledirigido", x, y);
+            agregarObsLabel();
+        }
+        if (numeroObstaculo == 4){
+            int x = _tamanioX + 50;
+            int y = randomPosY();
+            _facade->crearObstaculo("Volumen", x, y);
+            _partida->setLabelInfo("Volumen", x, y);
+            agregarObsLabel();
+        }
+        if (numeroObstaculo == 5){
+            int x = _tamanioX - 100;
+            int y = randomPosY();
+            _facade->crearObstaculo("Jefe", x, y);
+            _partida->setLabelInfo("Jefe", x, y);
             agregarObsLabel();
         }
 
@@ -85,8 +107,9 @@ void threadCrearObstaculos::process(){
         connect(encapsulaObstaculo, SIGNAL(finished()), encapsulaObstaculo, SLOT(deleteLater()));
         encapsulaObstaculo->start();
 
-        i ++;
+
         QThread::sleep(5);
     }
+    qDebug()<<"numero de reliquias al morir: "<<_facade->jugadorReliquias();
     emit finished();
 }

@@ -5,7 +5,7 @@
 #include "Obstaculo.h"
 #include <Facade.h>
 #include "guiPartida.h"
-
+#include <ctime>
 
 
 threadObstaculos::threadObstaculos(Obstaculo *obs, Facade *facade, guiPartida *partida)
@@ -22,6 +22,7 @@ threadObstaculos::~threadObstaculos(){
 }
 
 void threadObstaculos::process(){
+
     while ((*_obs).getSalud() > 0){
         (*_obs).mover();
         QThread::msleep(50);

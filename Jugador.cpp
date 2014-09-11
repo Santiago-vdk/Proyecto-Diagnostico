@@ -1,5 +1,5 @@
 #include "Jugador.h"
-
+#include <QDebug>
 #include <string>
 using namespace std;
 
@@ -8,13 +8,18 @@ Jugador::Jugador(string nombre)
    _puntaje = 0;
    _vidas = 3;
    _nombre = nombre;
-   _posX = 500;
-   _posY = 0;
+   _posX = 200;
+   _posY = 200;
    _velocidad = 0;
    _armas = 1;
    _invencible = false;
    _reliquias = 10;
 
+}
+
+Jugador::~Jugador()
+{
+    qDebug() << "mori Jugador";
 }
 int Jugador::getArmas(){
     return _armas;

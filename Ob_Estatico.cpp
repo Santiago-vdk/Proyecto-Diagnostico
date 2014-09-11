@@ -1,6 +1,5 @@
 #include "Ob_Estatico.h"
 #include <QDebug>
-
 void Ob_Estatico::mover(){
     if (_posX-10 > 0){
 

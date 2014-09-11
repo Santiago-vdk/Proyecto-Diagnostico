@@ -1,6 +1,5 @@
 #ifndef OB_DINAMICO_H
 #define OB_DINAMICO_H
-
 #include <Obstaculo.h>
 class Ob_Dinamico: public Obstaculo
 {

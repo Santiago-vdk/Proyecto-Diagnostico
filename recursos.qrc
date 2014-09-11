@@ -12,5 +12,9 @@
         <file>recursos/test.wav</file>
         <file>recursos/nave.png</file>
         <file>recursos/obstaculo1.png</file>
+        <file>recursos/explosion.png</file>
+        <file>recursos/obstaculo2.png</file>
+        <file>recursos/obstaculo3.png</file>
+        <file>recursos/obstaculo4.png</file>
     </qresource>
 </RCC>

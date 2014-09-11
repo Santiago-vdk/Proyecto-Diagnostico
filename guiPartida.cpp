@@ -11,6 +11,7 @@
 #include <QApplication>
 #include <QMovie>
 #include <myLabel.h>
+#include <QMessageBox>
 
 using namespace std;
 
@@ -37,8 +38,9 @@ void guiPartida::crearJugador(){
     labelJugador = new QLabel(this);
     QPixmap *pixmap=new QPixmap(":/recursos/nave.png");
     labelJugador->setPixmap(*pixmap);
-    labelJugador->move(100,200);
-    labelJugador->resize(QSize(100,100));
+
+    labelJugador->move(_facade->jugadorPosX(),_facade->jugadorPosY());
+    labelJugador->resize(QSize(80,80));
     labelJugador->show();
 }
 
@@ -76,36 +78,93 @@ void guiPartida::setLabelInfo(string pLabelNombre, int posLabelX, int posLabelY)
     _posLabelY = posLabelY;
 }
 
+void guiPartida::keyPressEvent(QKeyEvent *e)
+{
+    if (e->text() == "s"){
+        _facade->jugadorMoverMasY();
+        labelJugador->move(_facade->jugadorPosX(),_facade->jugadorPosY());
+
+    }
+
+    if (e->text() == "w"){
+        _facade->jugadorMoverMenosY();
+        labelJugador->move(_facade->jugadorPosX(),_facade->jugadorPosY());
+
+    }
+
+}
+
 void guiPartida::agregarArregloLabels()
 {
     if (_LabelNombre == "Dinamico"){
+        qDebug() << "label dinamico";
         QLabel *labelDinamico = new QLabel(this);
         QPixmap *pixmap = new QPixmap(":/recursos/obstaculo1.png");
         labelDinamico->setPixmap(*pixmap);
         labelDinamico->move(_posLabelX,_posLabelY);
-        labelDinamico->resize(QSize(100,100));
+        labelDinamico->resize(QSize(80,80));
         labelDinamico->show();
         arregloLabels[contadorArregloLabels] = labelDinamico;
         contadorArregloLabels++;
     }
 
     if (_LabelNombre == "Estatico"){
+        qDebug() << "label estatico";
         QLabel *labelDinamico = new QLabel(this);
-        QPixmap *pixmap = new QPixmap(":/recursos/obstaculo1.png");
+        QPixmap *pixmap = new QPixmap(":/recursos/Obstaculo4.png");
         labelDinamico->setPixmap(*pixmap);
         labelDinamico->move(_posLabelX,_posLabelY);
-        labelDinamico->resize(QSize(100,100));
+        labelDinamico->resize(QSize(80,80));
         labelDinamico->show();
         arregloLabels[contadorArregloLabels] = labelDinamico;
         contadorArregloLabels++;
     }
 
     if (_LabelNombre == "Rastrero"){
+        qDebug() << "label rastrero";
         QLabel *labelDinamico = new QLabel(this);
-        QPixmap *pixmap = new QPixmap(":/recursos/obstaculo1.png");
+        QPixmap *pixmap = new QPixmap(":/recursos/Obstaculo2.png");
         labelDinamico->setPixmap(*pixmap);
         labelDinamico->move(_posLabelX,_posLabelY);
-        labelDinamico->resize(QSize(100,100));
+        labelDinamico->resize(QSize(80,80));
+        labelDinamico->show();
+        arregloLabels[contadorArregloLabels] = labelDinamico;
+        contadorArregloLabels++;
+    }
+
+
+    if (_LabelNombre == "Teledirigido"){
+        qDebug() << "label teledirigido";
+        QLabel *labelDinamico = new QLabel(this);
+        QPixmap *pixmap = new QPixmap(":/recursos/obstaculo3.png");
+        labelDinamico->setPixmap(*pixmap);
+        labelDinamico->move(_posLabelX,_posLabelY);
+        labelDinamico->resize(QSize(80,80));
+        labelDinamico->show();
+        arregloLabels[contadorArregloLabels] = labelDinamico;
+        contadorArregloLabels++;
+    }
+
+    if (_LabelNombre == "Volumen"){
+        qDebug() << "label volumen";
+        QLabel *labelDinamico = new QLabel(this);
+        QPixmap *pixmap = new QPixmap(":/recursos/obstaculo4.png");
+        labelDinamico->setPixmap(*pixmap);
+        labelDinamico->move(_posLabelX,_posLabelY);
+        labelDinamico->resize(QSize(80,80));
+        labelDinamico->show();
+        arregloLabels[contadorArregloLabels] = labelDinamico;
+        contadorArregloLabels++;
+    }
+
+
+    if (_LabelNombre == "Jefe"){
+        qDebug() << "label Jefe";
+        QLabel *labelDinamico = new QLabel(this);
+        QPixmap *pixmap = new QPixmap(":/recursos/obstaculo3.png");
+        labelDinamico->setPixmap(*pixmap);
+        labelDinamico->move(_posLabelX,_posLabelY);
+        labelDinamico->resize(QSize(80,80));
         labelDinamico->show();
         arregloLabels[contadorArregloLabels] = labelDinamico;
         contadorArregloLabels++;

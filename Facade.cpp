@@ -17,11 +17,11 @@
 using namespace std;
 
 Facade::Facade(){
-    Jugador jugador("");
-    _jugador = &jugador;
+    _jugador = new Jugador("");
     _nivel = 1;
     _cantObstaculos=0;
     _cantBeneficios=0;
+
 }
 Facade::~Facade(){
     int i = 0;
@@ -34,16 +34,17 @@ Facade::~Facade(){
         delete _arrayBeneficios[w];
         w++;
     }
+    delete _jugador;
     qDebug()<<"mori facade";
 
 }
 
 
 int Facade::jugadorPosX(){
-    return (*_jugador).getPosX();
+    return _jugador->getPosX();
 }
 int Facade::jugadorPosY(){
-    return (*_jugador).getPosY();
+    return _jugador->getPosY();
 }
 void Facade::crearObstaculo(string tipo, int posX,int posY){
     if(_cantObstaculos<100){
@@ -52,23 +53,23 @@ void Facade::crearObstaculo(string tipo, int posX,int posY){
             _cantObstaculos++;
         }
         if (tipo=="Estatico"){
-            _arrayObstaculos[_cantObstaculos] = new Ob_Estatico(10,posX,posY,10);//valores de salud y valor tentativos
+            _arrayObstaculos[_cantObstaculos] = new Ob_Estatico(10,posX,posY,0);//valores de salud y valor tentativos
             _cantObstaculos++;
         }
         if (tipo=="Jefe"){
-            _arrayObstaculos[_cantObstaculos] = new Ob_Jefe(20,posX,posY,20);//valores de salud y valor tentativos
+            _arrayObstaculos[_cantObstaculos] = new Ob_Jefe(20,posX,posY,200);//valores de salud y valor tentativos
             _cantObstaculos++;
         }
         if (tipo=="Rastrero"){
-            _arrayObstaculos[_cantObstaculos] = new Ob_Rastrero(15,posX,posY,15);//valores de salud y valor tentativos
+            _arrayObstaculos[_cantObstaculos] = new Ob_Rastrero(8,posX,posY,50);//valores de salud y valor tentativos
             _cantObstaculos++;
         }
         if (tipo=="Teledirigido"){
-            _arrayObstaculos[_cantObstaculos] = new Ob_Teledirigido(5,posX,posY,5);//valores de salud y valor tentativos
+            _arrayObstaculos[_cantObstaculos] = new Ob_Teledirigido(8,posX,posY,20);//valores de salud y valor tentativos
             _cantObstaculos++;
         }
         if (tipo=="Volumen"){
-            _arrayObstaculos[_cantObstaculos] = new Ob_Volumen(2,posX,posY,2);//valores de salud y valor tentativos
+            _arrayObstaculos[_cantObstaculos] = new Ob_Volumen(2,posX,posY,10);//valores de salud y valor tentativos
             _cantObstaculos++;
         }
         else{
@@ -149,7 +150,7 @@ int Facade::getPosXBeneficioEnPos(int indice){
         return _arrayBeneficios[indice]->getPosX();
     }
     else{
-
+        return -1;
     }
 }
 int Facade::getPosYBeneficioEnPos(int indice){
@@ -157,7 +158,7 @@ int Facade::getPosYBeneficioEnPos(int indice){
         return _arrayBeneficios[indice]->getPosY();
     }
     else{
-
+        return -1;
     }
 }
 
@@ -171,12 +172,33 @@ Obstaculo *Facade::getObstaculoEnPos(int indice)
     if (indice < _cantObstaculos){
         return _arrayObstaculos[indice];
     }
+    else{
+
+    }
 }
 
 void Facade::setJugadorNombre(string nombre)
 {
     _jugador->setNombre(nombre);
 }
+
+void Facade::jugadorMoverMasX()
+{
+    _jugador->setPosX(_jugador->getPosX()+10);
+}
+void Facade::jugadorMoverMasY()
+{
+    _jugador->setPosY(_jugador->getPosY()+10);
+}
+void Facade::jugadorMoverMenosX()
+{
+    _jugador->setPosX(_jugador->getPosX()-10);
+}
+void Facade::jugadorMoverMenosY()
+{
+    _jugador->setPosY(_jugador->getPosY()-10);
+}
+
 
 int Facade::getCantBeneficios(){
     return _cantBeneficios;

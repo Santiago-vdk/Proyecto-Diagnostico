@@ -1,6 +1,5 @@
 #ifndef OB_RASTRERO_H
 #define OB_RASTRERO_H
-
 #include <Obstaculo.h>
 class Ob_Rastrero: public Obstaculo
 {

@@ -38,6 +38,10 @@ public:
     int jugadorReliquias();
     Obstaculo* getObstaculoEnPos(int indice);
     void setJugadorNombre(string nombre);
+    void jugadorMoverMasX();
+    void jugadorMoverMasY();
+    void jugadorMoverMenosX();
+    void jugadorMoverMenosY();
 };
 
 #endif // FACADE_H

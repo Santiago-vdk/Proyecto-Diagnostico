@@ -6,6 +6,7 @@
 #include <QString>
 #include <string>
 #include <Facade.h>
+#include <QKeyEvent>
 
 
 using namespace std;
@@ -28,6 +29,9 @@ public:
     int getTamanioVentanaY();
     void setTamanioVentana(int ptamanioX, int ptamanioY);
     void setLabelInfo(string pLabelNombre, int posLabelX, int posLabelY);
+
+    void keyPressEvent(QKeyEvent* e);
+
     ~guiPartida();
 
 

@@ -2,7 +2,6 @@
 #define OB_ESTATICO_H
 #include "Obstaculo.h"
 
-
 class Ob_Estatico: public Obstaculo
 {
 public:
