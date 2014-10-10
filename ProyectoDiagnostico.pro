@@ -24,7 +24,8 @@ SOURCES += \
     Facade.cpp \
     threadObstaculos.cpp \
     threadCrearObstaculos.cpp \
-    threadRefrescaGui.cpp
+    threadRefrescaGui.cpp \
+    json.cpp
 
 RESOURCES += \
     recursos.qrc
@@ -70,6 +71,7 @@ HEADERS += \
     Facade.h \
     threadObstaculos.h \
     threadCrearObstaculo.h \
-    threadRefrescaGui.h
+    threadRefrescaGui.h \
+    json.h
 
 OTHER_FILES +=
