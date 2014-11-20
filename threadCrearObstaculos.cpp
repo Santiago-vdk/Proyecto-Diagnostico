@@ -37,11 +37,10 @@ int threadCrearObstaculos::obstaculoRandom(){
 int threadCrearObstaculos::randomPosY(){
     time_t  timev;
     qsrand(time(&timev));
-    int v2 = rand()%10;
-    return v2*(_tamanioY/10);
+    int v2 = rand()%6;
+    return v2*100;
+
 }
-
-
 
 void threadCrearObstaculos::process(){
 
@@ -71,8 +70,8 @@ void threadCrearObstaculos::process(){
         if (numeroObstaculo == 2){
             int x = _tamanioX + 50;
             //int y = randomPosY();
-            _facade->crearObstaculo("Rastrero", x,_tamanioY-100);
-            _partida->setLabelInfo("Rastrero", x,_tamanioY-100);
+            _facade->crearObstaculo("Rastrero", x,550);
+            _partida->setLabelInfo("Rastrero", x,550);
             agregarObsLabel();
         }
         if (numeroObstaculo == 3){
@@ -108,7 +107,7 @@ void threadCrearObstaculos::process(){
         encapsulaObstaculo->start();
 
 
-        QThread::sleep(5);
+        QThread::sleep(3);
     }
     qDebug()<<"numero de reliquias al morir: "<<_facade->jugadorReliquias();
     emit finished();

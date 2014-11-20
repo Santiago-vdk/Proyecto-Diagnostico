@@ -9,6 +9,9 @@
 #include <threadCrearObstaculo.h>
 #include <Facade.h>
 #include <threadRefrescaGui.h>
+#include <threadCrearDisparos.h>
+#include <threadCrearBeneficios.h>
+#include <threadJugador.h>
 
 
 
@@ -32,9 +35,9 @@ public slots:
     void carga();
     void partida();
     void CrearObstaculos();
-
-
-private slots:
+    void Disparos();
+    void Beneficios();
+    void Jugador();
 
 
 
@@ -48,6 +51,15 @@ private:
 
     QThread* encapsulaThreadRefrescarGUI;
     threadRefrescaGui* ThreadRefrescarGUI;
+
+    QThread * encapsulaThreadCrearDisparos;
+    threadCrearDisparos * ThreadCrearDisparos;
+
+    QThread * encapsulaThreadCrearBeneficios;
+    threadCrearBeneficios * ThreadCrearBeneficios;
+
+    QThread *encapsulaThreadJugador;
+    threadJugador * ThreadJugador;
 
 };
 

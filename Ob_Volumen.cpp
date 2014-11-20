@@ -18,7 +18,7 @@ void Ob_Volumen::mover(){
         if ((num==2)&&(_posY-5>0)){
             _posY -= 5;
         }
-        if ((num==0)&&(_posY+5<900)){
+        if ((num==0)&&(_posY+5<550)){
             _posY += 5;
         }
     }

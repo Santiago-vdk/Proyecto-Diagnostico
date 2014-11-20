@@ -14,6 +14,7 @@
 #include <QThread>
 #include <threadCrearObstaculo.h>
 #include <threadRefrescaGui.h>
+#include <threadCrearDisparos.h>
 
 using namespace std;
 
@@ -60,14 +61,11 @@ void gui::refrescaGUI(){
     encapsulaThreadRefrescarGUI = new QThread;
     ThreadRefrescarGUI = new threadRefrescaGui(_facade, match);
     ThreadRefrescarGUI->moveToThread(encapsulaThreadRefrescarGUI);
-
     connect(encapsulaThreadRefrescarGUI, SIGNAL(started()), ThreadRefrescarGUI , SLOT(process()));
     connect(ThreadRefrescarGUI , SIGNAL(finished()), encapsulaThreadRefrescarGUI, SLOT(quit()));
     connect(ThreadRefrescarGUI , SIGNAL(finished()), ThreadRefrescarGUI , SLOT(deleteLater()));
     connect(encapsulaThreadRefrescarGUI, SIGNAL(finished()), encapsulaThreadRefrescarGUI, SLOT(deleteLater()));
-
     encapsulaThreadRefrescarGUI->start();
-
 }
 
 void gui::CrearObstaculos(){
@@ -82,6 +80,49 @@ void gui::CrearObstaculos(){
     encapsulaThreadCrearObjetos->start();
 
 }
+
+void gui::Disparos()
+{
+
+    encapsulaThreadCrearDisparos = new QThread;
+    ThreadCrearDisparos = new threadCrearDisparos(_facade, match);
+    ThreadCrearDisparos->moveToThread(encapsulaThreadCrearDisparos);
+    connect(encapsulaThreadCrearDisparos, SIGNAL(started()), ThreadCrearDisparos, SLOT(process()));
+    connect(ThreadCrearDisparos, SIGNAL(finished()), encapsulaThreadCrearDisparos, SLOT(quit()));
+    connect(ThreadCrearDisparos, SIGNAL(finished()),ThreadCrearDisparos, SLOT(deleteLater()));
+    connect(encapsulaThreadCrearDisparos, SIGNAL(finished()),encapsulaThreadCrearDisparos, SLOT(deleteLater()));
+    encapsulaThreadCrearDisparos->start();
+
+}
+
+
+void gui::Beneficios()
+{
+
+    encapsulaThreadCrearBeneficios = new QThread;
+    ThreadCrearBeneficios = new threadCrearBeneficios(_facade, match);
+    ThreadCrearBeneficios->moveToThread(encapsulaThreadCrearBeneficios);
+    connect(encapsulaThreadCrearBeneficios, SIGNAL(started()), ThreadCrearBeneficios, SLOT(process()));
+    connect(ThreadCrearBeneficios, SIGNAL(finished()), encapsulaThreadCrearBeneficios, SLOT(quit()));
+    connect(ThreadCrearBeneficios, SIGNAL(finished()),ThreadCrearBeneficios, SLOT(deleteLater()));
+    connect(encapsulaThreadCrearBeneficios, SIGNAL(finished()),encapsulaThreadCrearBeneficios, SLOT(deleteLater()));
+    encapsulaThreadCrearBeneficios->start();
+
+}
+
+void gui::Jugador()
+{
+
+    encapsulaThreadJugador = new QThread;
+    ThreadJugador = new threadJugador(_facade->getJugador(),_facade, match);
+    ThreadJugador->moveToThread(encapsulaThreadJugador);
+    connect(encapsulaThreadJugador, SIGNAL(started()), ThreadJugador, SLOT(process()));
+    connect(ThreadJugador, SIGNAL(finished()), encapsulaThreadJugador, SLOT(quit()));
+    connect(ThreadJugador, SIGNAL(finished()),ThreadJugador, SLOT(deleteLater()));
+    connect(encapsulaThreadJugador, SIGNAL(finished()),encapsulaThreadJugador, SLOT(deleteLater()));
+    encapsulaThreadJugador->start();
+}
+
 
 
 void gui::carga()
@@ -102,11 +143,13 @@ void gui::carga()
 void gui::partida(){
     string current_locale_text = qPrintable(nombreUsuario);
     _facade->setJugadorNombre(current_locale_text);
-
     match = new guiPartida(this,_facade);
     match->show();
     CrearObstaculos();
     refrescaGUI();
+    Disparos();
+    Beneficios();
+    Jugador();
 }
 
 gui::~gui()
