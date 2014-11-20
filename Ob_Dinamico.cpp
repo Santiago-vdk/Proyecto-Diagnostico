@@ -31,5 +31,5 @@ void Ob_Dinamico::mover(){
 
 }
 Ob_Dinamico::~Ob_Dinamico(){
-    qDebug()<<"mori dinamico";
+
 }

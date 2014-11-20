@@ -47,6 +47,12 @@ public slots:
     void aumentarContadorPuntucion(int contado);
     void quitarJugadorVida();
     void iniciarSonido(QString sonido);
+    void lecturaArduino(QString pCaracter);
+    void reducirTiempo();
+    void jugadorInvencible();
+    void jugadorNormal();
+    void jugadorSumaReliquia();
+    void jugadorGanaArma();
 
 
 

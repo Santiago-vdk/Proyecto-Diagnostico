@@ -24,5 +24,5 @@ void Ob_Jefe::mover(){
     }
 }
 Ob_Jefe::~Ob_Jefe(){
-    qDebug()<<"mori jefe";
+
 }

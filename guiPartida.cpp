@@ -31,6 +31,8 @@ guiPartida::guiPartida(QWidget *parent, Facade *facade):QMainWindow(parent)
     this->setPalette(palette);
     setTamanioVentana(this->size().width(),this->size().height());
     crearJugador();
+    ui->labelReliquias->setText(QString::number(_facade->getJugador()->getReliquias()));
+    ui->labelArma->setText(QString::number(_facade->getJugador()->getArmas()));
 
 
 }
@@ -43,7 +45,7 @@ void guiPartida::crearJugador(){
     labelJugador->setPixmap(*pixmap);
 
     labelJugador->move(_facade->jugadorPosX(),_facade->jugadorPosY());
-    labelJugador->resize(QSize(80,80));
+    labelJugador->resize(QSize(65,65));
     labelJugador->show();
 }
 
@@ -215,6 +217,72 @@ void guiPartida::keyPressEvent(QKeyEvent *e)
     }
 }
 
+
+void guiPartida::lecturaArduino(QString pCaracter)
+{
+    if (pCaracter == "W"){
+        _facade->jugadorMoverMenosY();
+        labelJugador->move(_facade->jugadorPosX(),_facade->jugadorPosY());
+    }
+    if (pCaracter == "S"){
+        _facade->jugadorMoverMasY();
+        labelJugador->move(_facade->jugadorPosX(),_facade->jugadorPosY());
+
+    }
+    if (pCaracter == "D"){
+        _facade->jugadorMoverMasX();
+        labelJugador->move(_facade->jugadorPosX(),_facade->jugadorPosY());
+    }
+
+    if (pCaracter == "A"){
+        _facade->jugadorMoverMenosX();
+        labelJugador->move(_facade->jugadorPosX(),_facade->jugadorPosY());
+    }
+    if (pCaracter == " "){
+
+        quieroUnDisparo = true;
+    }
+}
+
+void guiPartida::reducirTiempo()
+{
+    int tmp = ui->labelTiempo->text().toInt();
+    tmp = tmp -1;
+    QString temporal = QString::number(tmp);
+    ui->labelTiempo->setText(temporal);
+}
+
+void guiPartida::jugadorInvencible()
+{
+    QPixmap *pixmap=new QPixmap(":/recursos/invencible.png");
+    labelJugador->setPixmap(*pixmap);
+    labelJugador->resize(QSize(65,65));
+    labelJugador->show();
+
+}
+
+void guiPartida::jugadorNormal()
+{
+    QPixmap *pixmap=new QPixmap(":/recursos/nave.png");
+    labelJugador->setPixmap(*pixmap);
+    labelJugador->resize(QSize(65,65));
+    labelJugador->show();
+
+}
+
+void guiPartida::jugadorSumaReliquia()
+{
+    int reliquias = _facade->getJugador()->getReliquias();
+    ui->labelReliquias->setText(QString::number(reliquias));
+
+}
+
+void guiPartida::jugadorGanaArma()
+{
+    int armas = _facade->getJugador()->getArmas();
+    ui->labelReliquias->setText(QString::number(armas));
+}
+
 void guiPartida::agregarArregloLabels()
 {
     if (_LabelNombre == "Dinamico"){
@@ -330,6 +398,29 @@ void guiPartida::agregarArregloLabels()
         arregloBeneficios[contadorArregloBeneficios] = arma;
         contadorArregloBeneficios++;
 
+    }
+
+
+    if(_LabelNombre == "Invencible"){
+        QLabel *invencible = new QLabel(this);
+        QPixmap *pixmap=new QPixmap(":/recursos/invencible.png");
+        invencible->setPixmap(*pixmap);
+        invencible->move(_posLabelX,_posLabelY);
+        invencible->resize(QSize(65,65));
+        invencible->show();
+        arregloBeneficios[contadorArregloBeneficios] = invencible;
+        contadorArregloBeneficios++;
+    }
+
+    if(_LabelNombre == "Reliquia"){
+        QLabel *reliquia = new QLabel(this);
+        QPixmap *pixmap=new QPixmap(":/recursos/reliquia.png");
+        reliquia->setPixmap(*pixmap);
+        reliquia->move(_posLabelX,_posLabelY);
+        reliquia->resize(QSize(65,65));
+        reliquia->show();
+        arregloBeneficios[contadorArregloBeneficios] = reliquia;
+        contadorArregloBeneficios++;
     }
 
 

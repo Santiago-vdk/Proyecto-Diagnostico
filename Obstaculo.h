@@ -18,6 +18,10 @@ public:
 
     virtual void mover()=0;
 
+    bool matadoPorJugador;
+    bool getMatadoPorJugador();
+    void setMatadoPorJugador(bool pMatadoPorJugador);
+
 protected:
     int _salud,_posX,_posY,_valor;
 };

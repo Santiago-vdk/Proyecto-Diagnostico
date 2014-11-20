@@ -22,5 +22,5 @@ void Ob_Rastrero::mover(){
 
 }
 Ob_Rastrero::~Ob_Rastrero(){
-    qDebug()<<"mori rastrero";
+
 }

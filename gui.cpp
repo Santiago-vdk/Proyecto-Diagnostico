@@ -124,17 +124,30 @@ void gui::Jugador()
     encapsulaThreadJugador->start();
 }
 
-void gui::TiempoAudio()
+void gui::Tiempo()
 {
-    encapsulaThreadTiempoAudio = new QThread;
-    ThreadTiempoAudio = new threadTiempoAudio(_facade, match);
-    ThreadTiempoAudio->moveToThread(encapsulaThreadTiempoAudio);
-    connect(encapsulaThreadTiempoAudio, SIGNAL(started()), ThreadTiempoAudio, SLOT(process()));
-    connect(ThreadTiempoAudio, SIGNAL(finished()), encapsulaThreadTiempoAudio, SLOT(quit()));
-    connect(ThreadTiempoAudio, SIGNAL(finished()),ThreadTiempoAudio, SLOT(deleteLater()));
-    connect(encapsulaThreadTiempoAudio, SIGNAL(finished()),encapsulaThreadTiempoAudio, SLOT(deleteLater()));
-    encapsulaThreadTiempoAudio->start();
+    encapsulaThreadTiempo = new QThread;
+    ThreadTiempo = new threadTiempo(_facade, match);
+    ThreadTiempo->moveToThread(encapsulaThreadTiempo);
+    connect(encapsulaThreadTiempo, SIGNAL(started()), ThreadTiempo, SLOT(process()));
+    connect(ThreadTiempo, SIGNAL(finished()), encapsulaThreadTiempo, SLOT(quit()));
+    connect(ThreadTiempo, SIGNAL(finished()),ThreadTiempo, SLOT(deleteLater()));
+    connect(encapsulaThreadTiempo, SIGNAL(finished()),encapsulaThreadTiempo, SLOT(deleteLater()));
+    encapsulaThreadTiempo->start();
 }
+
+void gui::Arduino()
+{
+    encapsulaThreadArduino = new QThread;
+    ThreadArduino = new threadArduino(_facade, match);
+    ThreadArduino->moveToThread(encapsulaThreadArduino);
+    connect(encapsulaThreadArduino, SIGNAL(started()), ThreadArduino, SLOT(process()));
+    connect(ThreadArduino, SIGNAL(finished()), encapsulaThreadArduino, SLOT(quit()));
+    connect(ThreadArduino, SIGNAL(finished()),ThreadArduino, SLOT(deleteLater()));
+    connect(encapsulaThreadArduino, SIGNAL(finished()),encapsulaThreadArduino, SLOT(deleteLater()));
+    encapsulaThreadArduino->start();
+}
+
 
 
 
@@ -163,7 +176,8 @@ void gui::partida(){
     Disparos();
     Beneficios();
     Jugador();
-    TiempoAudio();
+    Tiempo();
+    Arduino();
 
 }
 

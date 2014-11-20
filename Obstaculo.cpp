@@ -6,6 +6,7 @@ Obstaculo::Obstaculo(int salud,int posX,int posY,int valor){
     _posX = posX;
     _posY = posY;
     _valor = valor;
+    matadoPorJugador = false;
 }
 Obstaculo::~Obstaculo(){
     qDebug()<<"mori obstaculo";
@@ -23,6 +24,16 @@ int Obstaculo::getSalud(){
 }
 int Obstaculo::getValor(){
     return _valor;
+}
+
+bool Obstaculo::getMatadoPorJugador()
+{
+    return matadoPorJugador;
+}
+
+void Obstaculo::setMatadoPorJugador(bool pMatadoPorJugador)
+{
+    matadoPorJugador = pMatadoPorJugador;
 }
 
 void Obstaculo::setPosX(int posX){

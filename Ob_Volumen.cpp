@@ -28,5 +28,5 @@ void Ob_Volumen::mover(){
 
 }
 Ob_Volumen::~Ob_Volumen(){
-    qDebug()<<"mori Volumen";
+
 }

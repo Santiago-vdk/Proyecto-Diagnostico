@@ -12,7 +12,8 @@
 #include <threadCrearDisparos.h>
 #include <threadCrearBeneficios.h>
 #include <threadJugador.h>
-#include <threadTiempoAudio.h>
+#include <threadTiempo.h>
+#include <threadArduino.h>
 
 
 
@@ -39,7 +40,8 @@ public slots:
     void Disparos();
     void Beneficios();
     void Jugador();
-    void TiempoAudio();
+    void Tiempo();
+    void Arduino();
 
 
 
@@ -63,8 +65,11 @@ private:
     QThread *encapsulaThreadJugador;
     threadJugador * ThreadJugador;
 
-    QThread *encapsulaThreadTiempoAudio;
-    threadTiempoAudio * ThreadTiempoAudio;
+    QThread *encapsulaThreadTiempo;
+    threadTiempo * ThreadTiempo;
+
+    QThread *encapsulaThreadArduino;
+    threadArduino * ThreadArduino;
 
 };
 

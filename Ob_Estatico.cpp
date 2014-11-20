@@ -11,5 +11,5 @@ void Ob_Estatico::mover(){
 
 }
 Ob_Estatico::~Ob_Estatico(){
-    qDebug()<<"mori estatico";
+
 }

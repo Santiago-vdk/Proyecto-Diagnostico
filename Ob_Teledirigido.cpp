@@ -10,5 +10,5 @@ void Ob_Teledirigido::mover(){
     }
 }
 Ob_Teledirigido::~Ob_Teledirigido(){
-    qDebug()<<"mori teledirigido";
+
 }

@@ -311,6 +311,7 @@ bool Facade::colisionConDisparo(int pPosX, int pPosY)
             _arrayObstaculos[i]->setSalud(_arrayObstaculos[i]->getSalud()-_jugador->getArmas());
             if(_arrayObstaculos[i]->getSalud()<=0){
                 _jugador->setPuntaje(_jugador->getPuntaje()+_arrayObstaculos[i]->getValor());
+                _arrayObstaculos[i]->setMatadoPorJugador(true);
                 qDebug()<<"puntaje: "<<_jugador->getPuntaje();
             }
             return true;
@@ -342,8 +343,9 @@ bool Facade::colisionConReliquia(int pPosX, int pPosY){
             qDebug() << "Choque Beneficio ";
             _arrayBeneficios[i]->setAdquirido(true);
             if(_arrayBeneficios[i]->beneficio().compare("Arma") == 0){
-                qDebug()<<"armas:"<<_jugador->getArmas();
+
                 _jugador->setArmas(_jugador->getArmas() + 2);
+                qDebug() <<_jugador->getArmas();
             }
             if(_arrayBeneficios[i]->beneficio().compare("Vida") == 0){
                 _jugador->setVidas(_jugador->getVidas() + 1);

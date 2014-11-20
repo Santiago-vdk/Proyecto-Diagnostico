@@ -37,6 +37,7 @@ QString com::leer()
         Port->waitForReadyRead(50);
         if (numBytes>0){
             qDebug()<<Port->readAll();
+
         }
     }
 }

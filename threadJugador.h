@@ -20,6 +20,8 @@ signals:
     void finished();
     void jugadorMuerto();
     void jugadorPierdeVida();
+    void jugadorNoPuedeMorir();
+    void jugadorPuedeMorir();
 
 private:
     Jugador *_jugador;

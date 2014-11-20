@@ -20,6 +20,8 @@ threadJugador::~threadJugador(){
 void threadJugador::process(){
     connect(this, SIGNAL(jugadorMuerto()), _partida, SLOT(destruirJugador()));
     connect(this,SIGNAL(jugadorPierdeVida()),_partida,SLOT(quitarJugadorVida()));
+        connect(this,SIGNAL(jugadorNoPuedeMorir()),_partida,SLOT(jugadorInvencible()));
+                connect(this,SIGNAL(jugadorPuedeMorir()),_partida,SLOT(jugadorNormal()));
     while (_facade->getVidaJugador() > 0){
         if(_jugador->getPosY()<0){
             _jugador->setVidas(_jugador->getVidas()-1);
@@ -39,7 +41,9 @@ void threadJugador::process(){
 
         }
         if(_jugador->getInvencible()){
+            jugadorNoPuedeMorir();
             QThread::msleep(2000);
+            jugadorPuedeMorir();
             _jugador->setInvencible(false);
         }
 

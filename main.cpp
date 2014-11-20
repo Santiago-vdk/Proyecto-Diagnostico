@@ -8,7 +8,9 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    QSound sound(":/recursos/ACDCHighwayToHell.wav");
 
+    sound.play();
     gui w;
     w.show();
 

@@ -27,7 +27,7 @@ threadCrearBeneficios::~threadCrearBeneficios(){
 
 int threadCrearBeneficios::beneficioRandom(){
     std::srand(time (NULL));
-    int v1 = std::rand() % 2;
+    int v1 = std::rand() % 4;
     return v1;
 }
 
@@ -43,11 +43,11 @@ int threadCrearBeneficios::randomPosY(){
 
 void threadCrearBeneficios::process(){
 
-    int i = 0;
+
 
     int numeroBeneficio;
     connect(this, SIGNAL(agregarBeneficioLabel()), _partida, SLOT(agregarArregloLabels()));
-    while (i <= _facade->jugadorReliquias()){
+    while ( _facade->getJugador()->getVidas() > 0){
         QThread::sleep(7);
         numeroBeneficio = beneficioRandom();
 
@@ -66,6 +66,20 @@ void threadCrearBeneficios::process(){
             _partida->setLabelInfo("Arma", x, y);
             agregarBeneficioLabel();
         }
+        if (numeroBeneficio == 2){
+            int x = _tamanioX + 50;
+            int y = randomPosY();
+            _facade->crearBeneficio("Invencible", x, y);
+            _partida->setLabelInfo("Invencible", x, y);
+            agregarBeneficioLabel();
+        }
+        if (numeroBeneficio == 3){
+            int x = _tamanioX + 50;
+            int y = randomPosY();
+            _facade->crearBeneficio("Reliquia", x, y);
+            _partida->setLabelInfo("Reliquia", x, y);
+            agregarBeneficioLabel();
+        }
 
 
         Beneficio *temp = _facade->getBeneficioEnPos(_facade->getCantBeneficios() - 1);
@@ -79,7 +93,7 @@ void threadCrearBeneficios::process(){
         encapsulaBeneficio->start();
         qDebug() << "Nuevo Beneficio";
 
-        i++;
+
 
         QThread::sleep(7);
 

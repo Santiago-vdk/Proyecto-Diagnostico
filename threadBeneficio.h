@@ -18,6 +18,10 @@ public slots:
 
 signals:
     void finished();
+    void jugadorPierdeVida();
+    void jugadorNoPuedeMorir();
+    void jugadorGanaReliquia();
+    void jugadorGanaArma();
 
 private:
     Beneficio *_beneficio;

@@ -31,8 +31,9 @@ SOURCES += \
     threadCrearBeneficios.cpp \
     threadBeneficio.cpp \
     threadJugador.cpp \
-    threadTiempoAudio.cpp \
-    com.cpp
+    com.cpp \
+    threadArduino.cpp \
+    threadTiempo.cpp
 
 RESOURCES += \
     recursos.qrc
@@ -86,7 +87,8 @@ HEADERS += \
     threadCrearBeneficios.h \
     threadBeneficio.h \
     threadJugador.h \
-    threadTiempoAudio.h \
-    com.h
+    com.h \
+    threadArduino.h \
+    threadTiempo.h
 
 OTHER_FILES +=

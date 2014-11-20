@@ -12,8 +12,6 @@
         <file>recursos/nave.png</file>
         <file>recursos/explosion.png</file>
         <file>recursos/disparo.png</file>
-        <file>recursos/arma.png</file>
-        <file>recursos/vida.png</file>
         <file>recursos/Obstaculo1.png</file>
         <file>recursos/Obstaculo2.png</file>
         <file>recursos/Obstaculo3.png</file>
@@ -23,5 +21,10 @@
         <file>recursos/2vidas.png</file>
         <file>recursos/3vidas.png</file>
         <file>recursos/4vidas.png</file>
+        <file>recursos/ACDCHighwayToHell.wav</file>
+        <file>recursos/vida.png</file>
+        <file>recursos/invencible.png</file>
+        <file>recursos/reliquia.png</file>
+        <file>recursos/arma.png</file>
     </qresource>
 </RCC>
