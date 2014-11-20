@@ -15,6 +15,7 @@ threadObstaculos::threadObstaculos(Obstaculo *obs, Facade *facade, guiPartida *p
     _facade = facade;
     _partida = partida;
 
+
 }
 
 threadObstaculos::~threadObstaculos(){
@@ -23,17 +24,19 @@ threadObstaculos::~threadObstaculos(){
 
 void threadObstaculos::process(){
 
-    while ((*_obs).getSalud() > 0){
+    connect(this, SIGNAL(aumentaPuntuacion(int)), _partida, SLOT(aumentarContadorPuntucion(int)));
+    while ((*_obs).getSalud() > 0  ){
         (*_obs).mover();
         QThread::msleep(50);
     }
 
     int indice = _facade->borrarObstaculoPorPuntero(_obs);
     if(indice == -1){
-        qDebug()<<"error";
+        qDebug()<<"error obstaculo";
     }
     else{
         _partida->borrarLabelEnPos(indice);
+        aumentaPuntuacion((*_obs).getValor()); //Arreglar
     }
     emit finished();
 

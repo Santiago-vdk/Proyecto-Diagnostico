@@ -19,7 +19,7 @@ void Ob_Dinamico::mover(){
         if ((num==5)&&(_posY-5>0)){
             _posY -= 5;
         }
-        if ((num==6)&&(_posY+5<900)){
+        if ((num==6)&&(_posY+5<550)){
             _posY += 5;
         }
 

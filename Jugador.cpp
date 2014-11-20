@@ -8,12 +8,12 @@ Jugador::Jugador(string nombre)
    _puntaje = 0;
    _vidas = 3;
    _nombre = nombre;
-   _posX = 200;
-   _posY = 200;
+   _posX = 100;
+   _posY = 600;
    _velocidad = 0;
-   _armas = 1;
+   _armas = 4;
    _invencible = false;
-   _reliquias = 10;
+   _reliquias = 5;
 
 }
 

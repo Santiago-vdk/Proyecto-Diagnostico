@@ -25,7 +25,13 @@ SOURCES += \
     threadObstaculos.cpp \
     threadCrearObstaculos.cpp \
     threadRefrescaGui.cpp \
-    json.cpp
+    json.cpp \
+    threadCrearDisparos.cpp \
+    threadDisparos.cpp \
+    Disparo.cpp \
+    threadCrearBeneficios.cpp \
+    threadBeneficio.cpp \
+    threadJugador.cpp
 
 RESOURCES += \
     recursos.qrc
@@ -72,6 +78,12 @@ HEADERS += \
     threadObstaculos.h \
     threadCrearObstaculo.h \
     threadRefrescaGui.h \
-    json.h
+    json.h \
+    threadCrearDisparos.h \
+    threadDisparos.h \
+    Disparo.h \
+    threadCrearBeneficios.h \
+    threadBeneficio.h \
+    threadJugador.h
 
 OTHER_FILES +=

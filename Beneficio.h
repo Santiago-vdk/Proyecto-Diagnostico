@@ -16,6 +16,9 @@ public:
     void setPosX(int posX);
     void setPosY(int posY);
     virtual string beneficio()=0;
+    bool adquirido;
+    bool getAdquirido();
+    void setAdquirido(bool pCondicion);
 };
 
 #endif // BENEFICIO_H
