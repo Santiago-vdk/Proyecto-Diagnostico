@@ -6,7 +6,7 @@
 #include <Facade.h>
 #include "guiPartida.h"
 #include <ctime>
-
+#include <QSound>
 
 threadObstaculos::threadObstaculos(Obstaculo *obs, Facade *facade, guiPartida *partida)
 {

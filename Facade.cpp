@@ -35,6 +35,11 @@ Facade::~Facade(){
         delete _arrayBeneficios[w];
         w++;
     }
+    int k = 0;
+    while(k<_cantDisparos){
+        delete _arrayDisparos[k];
+        k++;
+    }
     delete _jugador;
     qDebug()<<"mori facade";
 

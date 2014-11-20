@@ -15,6 +15,7 @@
 #include <threadCrearObstaculo.h>
 #include <threadRefrescaGui.h>
 #include <threadCrearDisparos.h>
+#include <QSound>
 
 using namespace std;
 
@@ -123,6 +124,18 @@ void gui::Jugador()
     encapsulaThreadJugador->start();
 }
 
+void gui::TiempoAudio()
+{
+    encapsulaThreadTiempoAudio = new QThread;
+    ThreadTiempoAudio = new threadTiempoAudio(_facade, match);
+    ThreadTiempoAudio->moveToThread(encapsulaThreadTiempoAudio);
+    connect(encapsulaThreadTiempoAudio, SIGNAL(started()), ThreadTiempoAudio, SLOT(process()));
+    connect(ThreadTiempoAudio, SIGNAL(finished()), encapsulaThreadTiempoAudio, SLOT(quit()));
+    connect(ThreadTiempoAudio, SIGNAL(finished()),ThreadTiempoAudio, SLOT(deleteLater()));
+    connect(encapsulaThreadTiempoAudio, SIGNAL(finished()),encapsulaThreadTiempoAudio, SLOT(deleteLater()));
+    encapsulaThreadTiempoAudio->start();
+}
+
 
 
 void gui::carga()
@@ -150,6 +163,8 @@ void gui::partida(){
     Disparos();
     Beneficios();
     Jugador();
+    TiempoAudio();
+
 }
 
 gui::~gui()

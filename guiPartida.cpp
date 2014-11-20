@@ -12,6 +12,7 @@
 #include <QMovie>
 #include <myLabel.h>
 #include <QMessageBox>
+#include <QSound>
 
 using namespace std;
 
@@ -30,6 +31,7 @@ guiPartida::guiPartida(QWidget *parent, Facade *facade):QMainWindow(parent)
     this->setPalette(palette);
     setTamanioVentana(this->size().width(),this->size().height());
     crearJugador();
+
 
 }
 
@@ -101,6 +103,17 @@ void guiPartida::quitarJugadorVida()
         ui->labelVidas->setPixmap(*vida);
     }
 
+
+}
+
+void guiPartida::iniciarSonido(QString sonido)
+{
+
+    if(sonido.compare("Piu") == 0){
+
+            QSound sound("c:/piu.wav");
+            sound.play();
+    }
 
 }
 

@@ -46,6 +46,7 @@ public slots:
     void colisionDisparo(int posX, int posY);
     void aumentarContadorPuntucion(int contado);
     void quitarJugadorVida();
+    void iniciarSonido(QString sonido);
 
 
 

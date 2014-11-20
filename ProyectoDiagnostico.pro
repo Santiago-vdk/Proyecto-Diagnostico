@@ -1,7 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets
-
+QT += qml quick widgets multimedia serialport
 SOURCES += \
     main.cpp \
     myLabel.cpp \
@@ -31,7 +30,8 @@ SOURCES += \
     Disparo.cpp \
     threadCrearBeneficios.cpp \
     threadBeneficio.cpp \
-    threadJugador.cpp
+    threadJugador.cpp \
+    threadTiempoAudio.cpp
 
 RESOURCES += \
     recursos.qrc
@@ -54,7 +54,7 @@ FORMS += \
     guiPartida.ui
 
 
-QT += multimedia
+
 
 HEADERS += \
     gui.h \
@@ -84,6 +84,7 @@ HEADERS += \
     Disparo.h \
     threadCrearBeneficios.h \
     threadBeneficio.h \
-    threadJugador.h
+    threadJugador.h \
+    threadTiempoAudio.h
 
 OTHER_FILES +=
