@@ -19,6 +19,7 @@ public slots:
 signals:
     void finished();
     void aumentaPuntuacion(int cantidad);
+    void terminoPartida();
 
 private:
     Obstaculo *_obs;

@@ -24,7 +24,6 @@ void threadArduino::habilitar(){
             Port->setParity(QSerialPort::NoParity);
             Port->setStopBits(QSerialPort::OneStop);
             Port->setFlowControl(QSerialPort::NoFlowControl);
-
             qDebug()<<"Puerto habilitado";
         }
     else{

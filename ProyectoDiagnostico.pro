@@ -33,7 +33,8 @@ SOURCES += \
     threadJugador.cpp \
     com.cpp \
     threadArduino.cpp \
-    threadTiempo.cpp
+    threadTiempo.cpp \
+    infomapa.cpp
 
 RESOURCES += \
     recursos.qrc
@@ -89,6 +90,7 @@ HEADERS += \
     threadJugador.h \
     com.h \
     threadArduino.h \
-    threadTiempo.h
+    threadTiempo.h \
+    infomapa.h
 
 OTHER_FILES +=

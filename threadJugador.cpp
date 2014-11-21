@@ -32,7 +32,6 @@ void threadJugador::process(){
 
         }
         if(_facade->colisionConObstaculo(_jugador->getPosX(), _jugador->getPosY())){
-            qDebug() << "Colision obstaculo, menos vida";
             _jugador->setInvencible(true);
             //respawn
             _jugador->setPosX(100);
@@ -59,7 +58,7 @@ void threadJugador::process(){
 
     }
     jugadorMuerto();
-    qDebug() << "mori";
+
     emit finished();
 
 }

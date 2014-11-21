@@ -3,7 +3,7 @@
 #include <ctime>
 #include <random>
 
-void Ob_Rastrero::mover(){
+void Ob_Rastrero::mover(int pPosY){
     if (_posX-10 > 0){
         time_t  timev;
         qsrand(time(&timev));

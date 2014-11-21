@@ -18,16 +18,14 @@ threadTiempo::~threadTiempo(){
 
 void threadTiempo::process(){
     connect(this, SIGNAL(reduzcoTiempo()), _partida, SLOT(reducirTiempo()));
-
-    while (true){
-        if(_facade->getVidaJugador() > 0){
-            reduzcoTiempo();
+    while (_facade->getVidaJugador() >= 0){
+        if(_facade->getTiempo() <= 0){
+            _facade->setVidasJugador(0);
         }
+        reduzcoTiempo();
+        _facade->setTiempo();
         QThread::sleep(1);
-
-
     }
-
 
     emit finished();
 

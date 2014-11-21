@@ -27,6 +27,7 @@ public slots:
 signals:
     void finished();
     void agregarBeneficioLabel();
+    void genodicio();
 
 
 

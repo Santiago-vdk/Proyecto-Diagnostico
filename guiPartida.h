@@ -28,6 +28,10 @@ public:
     void borrarLabelEnPos(int i);
     void borrarDisparoEnPos(int i);
     void borrarBeneficioEnPos(int i);
+
+
+
+
     int getTamanioVentanaX();
     int getTamanioVentanaY();
     void setTamanioVentana(int ptamanioX, int ptamanioY);
@@ -54,6 +58,11 @@ public slots:
     void jugadorSumaReliquia();
     void jugadorGanaArma();
 
+    void borrarLabels();
+    void borrarDisparos();
+    void borrarBeneficios();
+
+
 
 
 signals:
@@ -77,6 +86,7 @@ private:
     int _posLabelX;
     int _posLabelY;
     bool quieroUnDisparo;
+    void cambiarFondo();
 
 };
 

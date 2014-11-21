@@ -5,7 +5,7 @@ class Ob_Rastrero: public Obstaculo
 {
 public:
     Ob_Rastrero(int salud,int posX,int posY,int valor):Obstaculo(salud,posX,posY,valor){}
-    virtual void mover();
+    virtual void mover(int pPosY);
     ~Ob_Rastrero();
 };
 

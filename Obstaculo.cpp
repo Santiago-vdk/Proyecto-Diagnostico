@@ -9,7 +9,7 @@ Obstaculo::Obstaculo(int salud,int posX,int posY,int valor){
     matadoPorJugador = false;
 }
 Obstaculo::~Obstaculo(){
-    qDebug()<<"mori obstaculo";
+
 }
 
 int Obstaculo::getPosX(){

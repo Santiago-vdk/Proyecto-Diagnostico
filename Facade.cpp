@@ -18,10 +18,16 @@ using namespace std;
 
 Facade::Facade(){
     _jugador = new Jugador("");
-    _nivel = 1;
+    _nivel = 0;
     _cantObstaculos=0;
     _cantBeneficios=0;
     _cantDisparos=0;
+    cambioNivel = false;
+    _arrayObstaculosPorNivel = new int[5];
+    _arrayBeneficiosPorNivel = new int[4];
+    _infoMapa = new infoMapa(_nivel);
+    nuevoNivel();
+
 
 }
 Facade::~Facade(){
@@ -45,7 +51,6 @@ Facade::~Facade(){
 
 }
 
-
 int Facade::jugadorPosX(){
     return _jugador->getPosX();
 }
@@ -65,27 +70,27 @@ Jugador *Facade::getJugador()
 void Facade::crearObstaculo(string tipo, int posX,int posY){
     if(_cantObstaculos<100){
         if (tipo=="Dinamico"){
-            _arrayObstaculos[_cantObstaculos] = new Ob_Dinamico(10,posX,posY,10);//valores de salud y valor tentativos
+            _arrayObstaculos[_cantObstaculos] = new Ob_Dinamico(15,posX,posY,10);//valores de salud y valor tentativos
             _cantObstaculos++;
         }
         if (tipo=="Estatico"){
-            _arrayObstaculos[_cantObstaculos] = new Ob_Estatico(10,posX,posY,0);//valores de salud y valor tentativos
+            _arrayObstaculos[_cantObstaculos] = new Ob_Estatico(20,posX,posY,0);//valores de salud y valor tentativos
             _cantObstaculos++;
         }
         if (tipo=="Jefe"){
-            _arrayObstaculos[_cantObstaculos] = new Ob_Jefe(20,posX,posY,200);//valores de salud y valor tentativos
+            _arrayObstaculos[_cantObstaculos] = new Ob_Jefe(40,posX,posY,200);//valores de salud y valor tentativos
             _cantObstaculos++;
         }
         if (tipo=="Rastrero"){
-            _arrayObstaculos[_cantObstaculos] = new Ob_Rastrero(8,posX,posY,50);//valores de salud y valor tentativos
+            _arrayObstaculos[_cantObstaculos] = new Ob_Rastrero(10,posX,posY,50);//valores de salud y valor tentativos
             _cantObstaculos++;
         }
         if (tipo=="Teledirigido"){
-            _arrayObstaculos[_cantObstaculos] = new Ob_Teledirigido(8,posX,posY,20);//valores de salud y valor tentativos
+            _arrayObstaculos[_cantObstaculos] = new Ob_Teledirigido(10,posX,posY,50);//valores de salud y valor tentativos
             _cantObstaculos++;
         }
         if (tipo=="Volumen"){
-            _arrayObstaculos[_cantObstaculos] = new Ob_Volumen(2,posX,posY,10);//valores de salud y valor tentativos
+            _arrayObstaculos[_cantObstaculos] = new Ob_Volumen(4,posX,posY,20);//valores de salud y valor tentativos
             _cantObstaculos++;
         }
         else{
@@ -119,6 +124,31 @@ void Facade::borrarObstaculoEnPos(int indice){
         _cantObstaculos--;
         while(indice < _cantObstaculos){
             _arrayObstaculos[indice]=_arrayObstaculos[indice+1];
+            indice++;
+        }
+    }
+}
+
+
+void Facade::borrarDisparoEnPos(int indice)
+{
+    if (indice<_cantDisparos){
+        delete _arrayDisparos[indice];
+        _cantDisparos--;
+        while(indice < _cantDisparos){
+            _arrayDisparos[indice]=_arrayDisparos[indice+1];
+            indice++;
+        }
+    }
+}
+
+void Facade::borrarBeneficioEnPos(int indice)
+{
+    if (indice<_cantBeneficios){
+        delete _arrayBeneficios[indice];
+        _cantBeneficios--;
+        while(indice < _cantBeneficios){
+            _arrayBeneficios[indice]=_arrayBeneficios[indice+1];
             indice++;
         }
     }
@@ -188,8 +218,12 @@ int Facade::borrarBeneficioPorPuntero(Beneficio *beneficio)
             i++;
         }
     }
-    qDebug() << _cantBeneficios;
     return indice;
+}
+
+void Facade::setVidasJugador(int i)
+{
+    _jugador->setVidas(i);
 }
 //##########################################################
 
@@ -307,12 +341,10 @@ bool Facade::colisionConDisparo(int pPosX, int pPosY)
     for(int i = 0; i < _cantObstaculos; i++){
         if( ( pPosX + 40 >= _arrayObstaculos[i]->getPosX() && pPosX <= _arrayObstaculos[i]->getPosX() +65)
                 && pPosY + 10 >= _arrayObstaculos[i]->getPosY() && pPosY <= _arrayObstaculos[i]->getPosY() +65 ){
-            qDebug() << "Choque con disparo";
             _arrayObstaculos[i]->setSalud(_arrayObstaculos[i]->getSalud()-_jugador->getArmas());
             if(_arrayObstaculos[i]->getSalud()<=0){
                 _jugador->setPuntaje(_jugador->getPuntaje()+_arrayObstaculos[i]->getValor());
                 _arrayObstaculos[i]->setMatadoPorJugador(true);
-                qDebug()<<"puntaje: "<<_jugador->getPuntaje();
             }
             return true;
         }
@@ -325,7 +357,6 @@ bool Facade::colisionConObstaculo(int pPosX, int pPosY)
     for(int i = 0; i < _cantObstaculos; i++){
         if( ( pPosX + 65 >= _arrayObstaculos[i]->getPosX() && pPosX <= _arrayObstaculos[i]->getPosX() +65)
                 && pPosY + 65 >= _arrayObstaculos[i]->getPosY() && pPosY <= _arrayObstaculos[i]->getPosY() +65 ){
-            qDebug() << "Choque";
             _arrayObstaculos[i]->setSalud(0);
             _jugador->setVidas(_jugador->getVidas() - 1);
             return true;
@@ -340,21 +371,29 @@ bool Facade::colisionConReliquia(int pPosX, int pPosY){
     for(int i = 0; i < _cantBeneficios; i++){
         if( ( pPosX + 65 >= _arrayBeneficios[i]->getPosX() && pPosX <= _arrayBeneficios[i]->getPosX() +65)
                 && pPosY + 65 >= _arrayBeneficios[i]->getPosY() && pPosY <= _arrayBeneficios[i]->getPosY() +65 ){
-            qDebug() << "Choque Beneficio ";
             _arrayBeneficios[i]->setAdquirido(true);
             if(_arrayBeneficios[i]->beneficio().compare("Arma") == 0){
-
                 _jugador->setArmas(_jugador->getArmas() + 2);
-                qDebug() <<_jugador->getArmas();
             }
-            if(_arrayBeneficios[i]->beneficio().compare("Vida") == 0){
+            if(_arrayBeneficios[i]->beneficio().compare("Vida") == 0 && _jugador->getVidas() < 5){
+
                 _jugador->setVidas(_jugador->getVidas() + 1);
+
             }
             if(_arrayBeneficios[i]->beneficio().compare("Invencible") == 0){
                 _jugador->setInvencible(true);
             }
             if(_arrayBeneficios[i]->beneficio().compare("Reliquia") == 0){
                 _jugador->setReliquias(_jugador->getReliquias()-1);
+                setValorEnPosArrayBeneficiosPorNivel(0);
+
+//                if(_jugador->getReliquias() <= 0){
+//                    qDebug("Gane cambio nivel");
+//                    cambioNivel = true;
+//                    _nivel += 1;
+//                    nuevoNivel();
+//                    //cambioNivel = false;
+//                }
             }
 
             return true;
@@ -363,8 +402,71 @@ bool Facade::colisionConReliquia(int pPosX, int pPosY){
     return false;
 }
 
+void Facade::setCambioNivel(bool cambio)
+{
+    cambioNivel = cambio;
+}
 
+bool Facade::getCambioNivel()
+{
+    return cambioNivel;
+}
 
+void Facade::nuevoNivel()
+{
+    _nivel += 1;
+    if(_nivel>=4){
+        _jugador->setVidas(0);
+    }
+    else{
+        _infoMapa->leer(_nivel);
+        _arrayObstaculosPorNivel[0] = _infoMapa->getDinamico();
+        _arrayObstaculosPorNivel[1] = _infoMapa->getEstatico();
+        _arrayObstaculosPorNivel[2] = _infoMapa->getRastrero();
+        _arrayObstaculosPorNivel[3] = _infoMapa->getTeledirigido();
+        _arrayObstaculosPorNivel[4] = _infoMapa->getVolumen();
+
+        _arrayBeneficiosPorNivel[0] = _infoMapa->getReliquias();
+        _jugador->setReliquias(_infoMapa->getReliquias());
+        _arrayBeneficiosPorNivel[1] = _infoMapa->getArma();
+        _jugador->setArmas(_infoMapa->getArma());
+        _arrayBeneficiosPorNivel[2] = _infoMapa->getInvencible();
+        _arrayBeneficiosPorNivel[3] = _infoMapa->getVida();
+
+        _tiempo = _infoMapa->getTiempo();
+    }
+}
+
+int Facade::valorEnPosArrayObstaculosPorNivel(int i)
+{
+    return _arrayObstaculosPorNivel[i];
+
+}
+
+int Facade::valorEnPosArrayBeneficiosPorNivel(int i)
+{
+    return _arrayBeneficiosPorNivel[i];
+}
+
+void Facade::setValorEnPosArrayObstaculosPorNivel(int i)
+{
+    _arrayObstaculosPorNivel[i]-=1;
+}
+
+void Facade::setValorEnPosArrayBeneficiosPorNivel(int i)
+{
+    _arrayBeneficiosPorNivel[i]-=1;
+}
+
+int Facade::getTiempo()
+{
+    return _tiempo;
+}
+
+void Facade::setTiempo()
+{
+    _tiempo = _tiempo - 1;
+}
 
 int Facade::getCantBeneficios(){
     return _cantBeneficios;
@@ -377,9 +479,6 @@ int Facade::getNivel(){
 }
 
 //#########################################
-
-
-
 
 int Facade::getPosXDisparoEnPos(int indice){
     if(indice < _cantDisparos){
@@ -399,15 +498,10 @@ int Facade::getPosYDisparoEnPos(int indice){
 }
 
 
-
-
-
 int Facade::getCantDisparos()
 {
     return _cantDisparos;
 }
-
-
 
 //#######################################
 

@@ -109,6 +109,7 @@ void gui::Beneficios()
     connect(encapsulaThreadCrearBeneficios, SIGNAL(finished()),encapsulaThreadCrearBeneficios, SLOT(deleteLater()));
     encapsulaThreadCrearBeneficios->start();
 
+
 }
 
 void gui::Jugador()

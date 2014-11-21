@@ -4,7 +4,7 @@
 #include <random>
 
 
-void Ob_Dinamico::mover(){
+void Ob_Dinamico::mover(int pPosY){
     if ((_posX-10>0)){
         time_t  timev;
         qsrand(time(&timev));

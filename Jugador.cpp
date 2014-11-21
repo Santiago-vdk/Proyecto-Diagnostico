@@ -13,7 +13,7 @@ Jugador::Jugador(string nombre)
    _velocidad = 0;
    _armas = 4;
    _invencible = false;
-   _reliquias = 5;
+   _reliquias = 1;
 
 }
 

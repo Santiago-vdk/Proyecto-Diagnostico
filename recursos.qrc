@@ -9,13 +9,10 @@
         <file>recursos/8bit16.ttf</file>
         <file>recursos/Afternoon.png</file>
         <file>recursos/giphy.gif</file>
-        <file>recursos/nave.png</file>
         <file>recursos/explosion.png</file>
         <file>recursos/disparo.png</file>
         <file>recursos/Obstaculo1.png</file>
-        <file>recursos/Obstaculo2.png</file>
         <file>recursos/Obstaculo3.png</file>
-        <file>recursos/Obstaculo4.png</file>
         <file>recursos/5vidas.png</file>
         <file>recursos/1vidas.png</file>
         <file>recursos/2vidas.png</file>
@@ -26,5 +23,12 @@
         <file>recursos/invencible.png</file>
         <file>recursos/reliquia.png</file>
         <file>recursos/arma.png</file>
+        <file>recursos/nave.png</file>
+        <file>recursos/Obstaculo2.png</file>
+        <file>recursos/Obstaculo5.png</file>
+        <file>recursos/Obstaculo6.png</file>
+        <file>recursos/Obstaculo4.png</file>
+        <file>recursos/LateAfternoon.png</file>
+        <file>recursos/LateEvening.png</file>
     </qresource>
 </RCC>

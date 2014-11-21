@@ -25,8 +25,10 @@ threadObstaculos::~threadObstaculos(){
 void threadObstaculos::process(){
 
     connect(this, SIGNAL(aumentaPuntuacion(int)), _partida, SLOT(aumentarContadorPuntucion(int)));
-    while ((*_obs).getSalud() > 0  ){
-        (*_obs).mover();
+     connect(this,SIGNAL(terminoPartida()),_partida,SLOT(borrarLabels()));
+    while ((*_obs).getSalud() > 0 && !_facade->getCambioNivel() ){
+
+        (*_obs).mover(_facade->getJugador()->getPosY());
 
         QThread::msleep(50);
     }
@@ -35,13 +37,19 @@ void threadObstaculos::process(){
         aumentaPuntuacion((*_obs).getValor());
     }
 
-    int indice = _facade->borrarObstaculoPorPuntero(_obs);
-    if(indice == -1){
-        qDebug()<<"error obstaculo";
-    }
-    else{
-        _partida->borrarLabelEnPos(indice);
+//    if(_facade->getCambioNivel()){
+//        qDebug("mato obs");
+//        terminoPartida();
+//    }
+    if(!_facade->getCambioNivel()){
+        int indice = _facade->borrarObstaculoPorPuntero(_obs);
+        if(indice == -1){
+            qDebug()<<"error obstaculo";
+        }
+        else{
+            _partida->borrarLabelEnPos(indice);
 
+        }
     }
     emit finished();
 

@@ -16,7 +16,7 @@ public:
     int getPosY();
     int getValor();
 
-    virtual void mover()=0;
+    virtual void mover(int pPosY)=0;
 
     bool matadoPorJugador;
     bool getMatadoPorJugador();

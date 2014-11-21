@@ -17,7 +17,7 @@ threadRefrescaGui::~threadRefrescaGui(){
 
 void threadRefrescaGui::process(){
     connect(this, SIGNAL(refresquemela()), _partida, SLOT(refrescarGUI()));
-    while (_facade->jugadorReliquias() > 0){
+    while (_facade->getVidaJugador() > 0){
         QThread::msleep(50);
         refresquemela();
     }

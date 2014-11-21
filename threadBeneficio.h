@@ -22,6 +22,7 @@ signals:
     void jugadorNoPuedeMorir();
     void jugadorGanaReliquia();
     void jugadorGanaArma();
+        void terminoPartida();
 
 private:
     Beneficio *_beneficio;

@@ -20,6 +20,7 @@ signals:
     void finished();
         void agregarObsLabel();
     void estallidoDisparo(int posX, int posY);
+        void terminoPartida();
 
 private:
     Disparo *_disparo;

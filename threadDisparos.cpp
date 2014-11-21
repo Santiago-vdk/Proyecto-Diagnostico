@@ -24,7 +24,8 @@ threadDisparos::~threadDisparos(){
 void threadDisparos::process(){
     int i = 5;
     connect(this,SIGNAL(estallidoDisparo(int,int)), _partida, SLOT(colisionDisparo(int,int)));
-    while (_disparo->getPosX() < _partida->getTamanioVentanaX() && _disparo->getbanderaConPolvora()){
+            connect(this,SIGNAL(terminoPartida()),_partida,SLOT(borrarDisparos()));
+    while (_disparo->getPosX() < _partida->getTamanioVentanaX() && _disparo->getbanderaConPolvora() && !_facade->getCambioNivel()){
         _disparo->setPosX(_disparo->getPosX()+i);
 
         if(_facade->colisionConDisparo(_disparo->getPosX(),_disparo->getPosY())){
@@ -37,15 +38,20 @@ void threadDisparos::process(){
         QThread::msleep(10);
     }
 
+//    if(_facade->getCambioNivel()){
+//        qDebug("mato disparos");
+//        terminoPartida();
+//    }
+    if(!_facade->getCambioNivel()){
+        int indice = _facade->borrarDisparoPorPuntero(_disparo);
+        if(indice == -1){
+            qDebug()<<"error disparo";
+        }
+        else{
 
-    int indice = _facade->borrarDisparoPorPuntero(_disparo);
-    if(indice == -1){
-        qDebug()<<"error disparo";
-    }
-    else{
-
-        //aqui cambiar imagen de disparo a imagen de explosion
-        _partida->borrarDisparoEnPos(indice);
+            //aqui cambiar imagen de disparo a imagen de explosion
+            _partida->borrarDisparoEnPos(indice);
+        }
     }
     emit finished();
 

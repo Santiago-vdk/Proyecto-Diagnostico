@@ -3,13 +3,12 @@
 #include <ctime>
 #include <random>
 #include <ctime>
-void Ob_Jefe::mover(){
-    if (_posX-10 > 0){
+void Ob_Jefe::mover(int pPosY){
         time_t  timev;
         qsrand(time(&timev));
         int num = rand()%10;
 
-        if ((num==4)or(num==5)){
+        if (((num==4)or(num==5)) && _posX>700){
             _posX -= 5;
         }
         if ((num<4)&&(_posY-5>0)){
@@ -19,10 +18,6 @@ void Ob_Jefe::mover(){
             _posY += 5;
         }
     }
-    else{
-        _salud = 0;
-    }
-}
 Ob_Jefe::~Ob_Jefe(){
 
 }

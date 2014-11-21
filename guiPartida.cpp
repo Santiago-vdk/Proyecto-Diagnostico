@@ -29,12 +29,13 @@ guiPartida::guiPartida(QWidget *parent, Facade *facade):QMainWindow(parent)
     QPalette palette;
     palette.setBrush(QPalette::Background, bkgnd);
     this->setPalette(palette);
+
     setTamanioVentana(this->size().width(),this->size().height());
     crearJugador();
     ui->labelReliquias->setText(QString::number(_facade->getJugador()->getReliquias()));
     ui->labelArma->setText(QString::number(_facade->getJugador()->getArmas()));
-
-
+    ui->labelTiempo->setText(QString::number(_facade->getTiempo()));
+    ui->labelNivel->setText(QString::number(_facade->getNivel() - 1));
 }
 
 
@@ -52,20 +53,24 @@ void guiPartida::crearJugador(){
 
 void guiPartida::destruirJugador(){
     labelJugador->hide();
+    QMessageBox *finPartida = new QMessageBox();
+    finPartida->setText("Gracias por jugar, "+ QString::fromStdString(_facade->getJugador()->getNombre()) + "." + " Su puntuacion: " + QString::number(_facade->getJugador()->getPuntaje()));
+    finPartida->show();
+    this->close();
+
+
 }
 
 void guiPartida::colisionDisparo(int posX, int posY)
 {
     //Cambio imagen
-    qDebug() << "Cambio";
     for(int i = 0; i < contadorArregloDisparos; i++){
-        qDebug() << "x1 " << posX << "," << "x2 " << arregloDisparos[i]->x();
-
-
         if(arregloDisparos[i]->x()+5 == posX +20 || arregloDisparos[i]->x()+5 == posX - 20 ){
             qDebug() << "Boom";
             QPixmap *boom = new QPixmap(":/recursos/explosion.png");
             arregloDisparos[i]->setPixmap(*boom);
+            arregloDisparos[i]->resize(QSize(65,65));
+            arregloDisparos[i]->show();
         }
     }
 
@@ -127,7 +132,6 @@ void guiPartida::borrarLabelEnPos(int i){
             arregloLabels[i]=arregloLabels[i+1];
             i++;
         }
-
     }
 }
 
@@ -153,12 +157,84 @@ void guiPartida::borrarBeneficioEnPos(int i){
     }
 }
 
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+void guiPartida::borrarLabels(){
+    int i =0;
+    while(i < contadorArregloLabels){
+        arregloLabels[i]->deleteLater();
+        i++;
+    }
+    i=0;
+    while(i<_facade->getCantObstaculos()){
+        _facade->borrarObstaculoEnPos(i);
+    }
+    contadorArregloLabels = 0;
+    borrarDisparos();
+
+}
+
+void guiPartida::borrarDisparos(){
+    int i =0;
+    while(i < contadorArregloDisparos){
+        arregloDisparos[i]->deleteLater();
+        _facade->borrarDisparoEnPos(i);
+        i++;
+    }
+    contadorArregloDisparos = 0;
+    borrarBeneficios();
+}
+
+void guiPartida::borrarBeneficios(){
+    int i =0;
+    while(i < contadorArregloBeneficios){
+        arregloBeneficios[i]->deleteLater();
+        _facade->borrarBeneficioEnPos(i);
+        i++;
+    }
+    contadorArregloBeneficios = 0;
+    ui->labelTiempo->setText(QString::number(_facade->getTiempo())); //Recupero tiempo
+    ui->labelArma->setText(QString::number(_facade->getJugador()->getArmas()));
+    ui->labelNivel->setText(QString::number(_facade->getNivel()));
+    ui->labelReliquias->setText(QString::number(_facade->jugadorReliquias()));
+
+
+    cambiarFondo();
+    _facade->setCambioNivel(false);
+
+}
+
+void guiPartida::cambiarFondo()
+{
+    if(_facade->getNivel() - 1 == 2){
+
+        QPixmap bkgnd(":/recursos/LateAfternoon.png");
+        bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+        QPalette palette;
+        palette.setBrush(QPalette::Background, bkgnd);
+        this->setPalette(palette);
+
+    }
+    if(_facade->getNivel() - 1 == 3){
+
+        QPixmap bkgnd(":/recursos/LateEvening.png");
+        bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+        QPalette palette;
+        palette.setBrush(QPalette::Background, bkgnd);
+        this->setPalette(palette);
+    }
+
+
+
+}
+
 void guiPartida::refrescarGUI()
 {
     int i = 0;
     int j = 0;
     int k = 0;
-    while (i < contadorArregloLabels || j < contadorArregloDisparos || k < contadorArregloBeneficios){
+   while (i < contadorArregloLabels || j < contadorArregloDisparos || k < contadorArregloBeneficios){
         if(j < contadorArregloDisparos){
             arregloDisparos[j]->move(_facade->getPosXDisparoEnPos(j),_facade->getPosYDisparoEnPos(j));
         }
@@ -280,13 +356,12 @@ void guiPartida::jugadorSumaReliquia()
 void guiPartida::jugadorGanaArma()
 {
     int armas = _facade->getJugador()->getArmas();
-    ui->labelReliquias->setText(QString::number(armas));
+    ui->labelArma->setText(QString::number(armas));
 }
 
 void guiPartida::agregarArregloLabels()
 {
     if (_LabelNombre == "Dinamico"){
-        qDebug() << "label dinamico";
         QLabel *labelDinamico = new QLabel(this);
         QPixmap *pixmap = new QPixmap(":/recursos/Obstaculo1.png");
         labelDinamico->setPixmap(*pixmap);
@@ -298,9 +373,8 @@ void guiPartida::agregarArregloLabels()
     }
 
     if (_LabelNombre == "Estatico"){
-        qDebug() << "label estatico";
         QLabel *labelDinamico = new QLabel(this);
-        QPixmap *pixmap = new QPixmap(":/recursos/Obstaculo4.png");
+        QPixmap *pixmap = new QPixmap(":/recursos/Obstaculo3.png");
         labelDinamico->setPixmap(*pixmap);
         labelDinamico->move(_posLabelX,_posLabelY);
         labelDinamico->resize(QSize(65,65));
@@ -310,7 +384,6 @@ void guiPartida::agregarArregloLabels()
     }
 
     if (_LabelNombre == "Rastrero"){
-        qDebug() << "label rastrero";
         QLabel *labelDinamico = new QLabel(this);
         QPixmap *pixmap = new QPixmap(":/recursos/Obstaculo2.png");
         labelDinamico->setPixmap(*pixmap);
@@ -323,9 +396,8 @@ void guiPartida::agregarArregloLabels()
 
 
     if (_LabelNombre == "Teledirigido"){
-        qDebug() << "label teledirigido";
         QLabel *labelDinamico = new QLabel(this);
-        QPixmap *pixmap = new QPixmap(":/recursos/Obstaculo3.png");
+        QPixmap *pixmap = new QPixmap(":/recursos/Obstaculo5.png");
         labelDinamico->setPixmap(*pixmap);
         labelDinamico->move(_posLabelX,_posLabelY);
         labelDinamico->resize(QSize(65,65));
@@ -335,9 +407,8 @@ void guiPartida::agregarArregloLabels()
     }
 
     if (_LabelNombre == "Volumen"){
-        qDebug() << "label volumen";
         QLabel *labelDinamico = new QLabel(this);
-        QPixmap *pixmap = new QPixmap(":/recursos/Obstaculo4.png");
+        QPixmap *pixmap = new QPixmap(":/recursos/Obstaculo6.png");
         labelDinamico->setPixmap(*pixmap);
         labelDinamico->move(_posLabelX,_posLabelY);
         labelDinamico->resize(QSize(65,65));
@@ -348,12 +419,11 @@ void guiPartida::agregarArregloLabels()
 
 
     if (_LabelNombre == "Jefe"){
-        qDebug() << "label Jefe";
         QLabel *labelDinamico = new QLabel(this);
-        QPixmap *pixmap = new QPixmap(":/recursos/Obstaculo3.png");
+        QPixmap *pixmap = new QPixmap(":/recursos/Obstaculo4.png");
         labelDinamico->setPixmap(*pixmap);
         labelDinamico->move(_posLabelX,_posLabelY);
-        labelDinamico->resize(QSize(65,65));
+        labelDinamico->resize(QSize(130,130));
         labelDinamico->show();
         arregloLabels[contadorArregloLabels] = labelDinamico;
         contadorArregloLabels++;
@@ -362,7 +432,6 @@ void guiPartida::agregarArregloLabels()
 
     //Disparos
     if(_LabelNombre == "Disparo"){
-        qDebug() << "label Disparo";
         QLabel *bala = new QLabel(this);
         QPixmap *pixmap=new QPixmap(":/recursos/disparo.png");
         bala->setPixmap(*pixmap);
