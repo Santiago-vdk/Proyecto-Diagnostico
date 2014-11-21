@@ -56,8 +56,8 @@ void threadCrearBeneficios::process(){
         QThread::sleep(7);
 
         if(!_facade->getCambioNivel()){
-            //numeroBeneficio = beneficioRandom();
-            numeroBeneficio = 3;
+            numeroBeneficio = beneficioRandom();
+            //numeroBeneficio = 3;
             if (numeroBeneficio == 0 && _facade->valorEnPosArrayBeneficiosPorNivel(3) >0){
                 int x = _tamanioX + 50;
                 int y = randomPosY();
